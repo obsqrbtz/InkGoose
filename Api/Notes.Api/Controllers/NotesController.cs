@@ -35,7 +35,12 @@ namespace InkGoose.Api.Notes.Controllers
         [HttpGet(Name = "GetLast")]
         public Note GetLast()
         {
-            return NotesPlaceholder.MaxBy(x => x.DateCreated);
+            var result = NotesPlaceholder.MaxBy(x => x.DateCreated);
+            if (result is null)
+            {
+                return new Note();
+            }
+            return result;
         }
 
         [HttpPost(Name = "AddNote")]

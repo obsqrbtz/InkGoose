@@ -30,4 +30,5 @@ app.MapControllers();
 app.Run();
 
 // TODO:
-//    - Markdown support
+//  - Markdown support
+//  - import/export from/to popular notes apps (keep, apple notes, evernote, obsidian, notes)
