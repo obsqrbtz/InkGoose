@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkPandaServer", "InkPandaS
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "inkpandaweb", "InkPandaWeb\inkpandaweb.esproj", "{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{EC725246-CAA0-46F8-8817-648B390E8094}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkGoose.Domain", "Core\InkGoose.Domain\InkGoose.Domain.csproj", "{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,9 +27,16 @@ Global
 		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE} = {EC725246-CAA0-46F8-8817-648B390E8094}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0BD622BB-BC09-4F28-B53F-9D12482B212D}

@@ -1,3 +1,4 @@
+using InkGoose.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InkPandaServer.Controllers
@@ -8,13 +9,13 @@ namespace InkPandaServer.Controllers
     {
         private static List<Note> NotesPlaceholder = 
             [
-                new() {Id = 0, DateCreated = DateTime.Today, DateModified = DateTime.Now, Archived = false, Title = "First note", 
+                new() {Id = Guid.NewGuid(), DateCreated = DateTime.Now, DateModified = DateTime.Now, Archived = false, Title = "First note", 
                     Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
-                new() {Id = 1, DateCreated = DateTime.Today, DateModified = DateTime.Now, Archived = false, Title = "Second note",
+                new() {Id = Guid.NewGuid(), DateCreated = DateTime.Now, DateModified = DateTime.Now, Archived = false, Title = "Second note",
                     Content = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
-                new() {Id = 2, DateCreated = DateTime.Today, DateModified = DateTime.Now, Archived = true, Title = "Third note",
+                new() {Id = Guid.NewGuid(), DateCreated = DateTime.Now, DateModified = DateTime.Now, Archived = true, Title = "Third note",
                     Content = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."},
-                new() {Id = 3, DateCreated = DateTime.Today, DateModified = DateTime.Now, Archived = false, Title = "Fourth note",
+                new() {Id = Guid.NewGuid(), DateCreated = DateTime.Now, DateModified = DateTime.Now, Archived = false, Title = "Fourth note",
                     Content = "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\n"}
             ];
 
@@ -34,7 +35,7 @@ namespace InkPandaServer.Controllers
         [HttpGet(Name = "GetLast")]
         public Note GetLast()
         {
-            return NotesPlaceholder.MaxBy(x => x.Id);
+            return NotesPlaceholder.MaxBy(x => x.DateCreated);
         }
 
         [HttpPost(Name = "AddNote")]
@@ -42,7 +43,7 @@ namespace InkPandaServer.Controllers
         {
             NotesPlaceholder.Add(new Note()
             {
-                Id = (uint)NotesPlaceholder.Count,
+                Id = Guid.NewGuid(),
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
                 Archived = false,
@@ -52,14 +53,14 @@ namespace InkPandaServer.Controllers
         }
 
         [HttpDelete(Name = "DeleteNote")]
-        public void DeleteNote(uint id)
+        public void DeleteNote(Guid id)
         {
             var note = NotesPlaceholder.First(x => x.Id == id);
             NotesPlaceholder.Remove(note);
         }
 
         [HttpPatch(Name = "UpdateNote")]
-        public void UpdateNote(uint id, bool archived, string? title = null, string? content = null)
+        public void UpdateNote(Guid id, bool archived, string? title = null, string? content = null)
         {
             var noteIdx = NotesPlaceholder.FindIndex(x => x.Id == id);
             NotesPlaceholder[noteIdx].Archived = archived;
@@ -71,6 +72,7 @@ namespace InkPandaServer.Controllers
             {
                 NotesPlaceholder[noteIdx].Content = content;
             }
+            NotesPlaceholder[noteIdx].DateModified = DateTime.Now;
         }
     }
 
