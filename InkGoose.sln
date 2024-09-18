@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "inkpandaweb", "InkPandaWeb\inkpandaweb.esproj", "{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{EC725246-CAA0-46F8-8817-648B390E8094}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkGoose.Domain", "Core\InkGoose.Domain\InkGoose.Domain.csproj", "{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}"
@@ -21,12 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
