@@ -28,11 +28,11 @@
         },
         methods: {
             async fetchNotes() {
-                const response = await fetch("https://localhost:7193/api/Notes/GetNotesList");
+                const response = await fetch("https://localhost:7264/api/Notes/GetNotesList");
                 this.data = await response.json();
             },
             async createNote() {
-                const response = await fetch("https://localhost:7193/api/Notes/AddNote?title=New%20note&content=Note%20was%20created%20successfully", {
+                const response = await fetch("https://localhost:7264/api/Notes/AddNote?title=New%20note&content=Note%20was%20created%20successfully", {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"

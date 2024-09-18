@@ -1,15 +1,15 @@
 using InkGoose.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InkPandaServer.Controllers
+namespace InkGoose.Api.Notes.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class NotesController : ControllerBase
     {
-        private static List<Note> NotesPlaceholder = 
+        private static List<Note> NotesPlaceholder =
             [
-                new() {Id = Guid.NewGuid(), DateCreated = DateTime.Now, DateModified = DateTime.Now, Archived = false, Title = "First note", 
+                new() {Id = Guid.NewGuid(), DateCreated = DateTime.Now, DateModified = DateTime.Now, Archived = false, Title = "First note",
                     Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
                 new() {Id = Guid.NewGuid(), DateCreated = DateTime.Now, DateModified = DateTime.Now, Archived = false, Title = "Second note",
                     Content = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
@@ -39,7 +39,7 @@ namespace InkPandaServer.Controllers
         }
 
         [HttpPost(Name = "AddNote")]
-        public void AddNote(string title, string content) 
+        public void AddNote(string title, string content)
         {
             NotesPlaceholder.Add(new Note()
             {

@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkPandaServer", "InkPandaServer\InkPandaServer.csproj", "{C2EE31EA-E26F-4A75-A4D5-271E10593858}"
-EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "inkpandaweb", "InkPandaWeb\inkpandaweb.esproj", "{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{EC725246-CAA0-46F8-8817-648B390E8094}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkGoose.Domain", "Core\InkGoose.Domain\InkGoose.Domain.csproj", "{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notes.Api", "Api\Notes.Api\Notes.Api.csproj", "{AB815DC4-A191-431B-AA02-ECB87707807F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{F95BC5DD-4C93-48DD-95C4-9E84E00C16C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkGoose.Application", "Core\InkGoose.Application\InkGoose.Application.csproj", "{2224FCE3-FAF4-4A20-9472-48CD59393FFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C2EE31EA-E26F-4A75-A4D5-271E10593858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2EE31EA-E26F-4A75-A4D5-271E10593858}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2EE31EA-E26F-4A75-A4D5-271E10593858}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2EE31EA-E26F-4A75-A4D5-271E10593858}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AFC911C-6C68-46EC-AA1A-2738C6BB1390}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -31,12 +31,22 @@ Global
 		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB815DC4-A191-431B-AA02-ECB87707807F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB815DC4-A191-431B-AA02-ECB87707807F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB815DC4-A191-431B-AA02-ECB87707807F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB815DC4-A191-431B-AA02-ECB87707807F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2224FCE3-FAF4-4A20-9472-48CD59393FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2224FCE3-FAF4-4A20-9472-48CD59393FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2224FCE3-FAF4-4A20-9472-48CD59393FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2224FCE3-FAF4-4A20-9472-48CD59393FFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{329717BE-0385-4CC4-B00E-6E6C2CF22BFE} = {EC725246-CAA0-46F8-8817-648B390E8094}
+		{AB815DC4-A191-431B-AA02-ECB87707807F} = {F95BC5DD-4C93-48DD-95C4-9E84E00C16C1}
+		{2224FCE3-FAF4-4A20-9472-48CD59393FFD} = {EC725246-CAA0-46F8-8817-648B390E8094}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0BD622BB-BC09-4F28-B53F-9D12482B212D}
