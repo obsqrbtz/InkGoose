@@ -1,6 +1,6 @@
-@Notes.Api_HostAddress = http://localhost:5284
+@Notes.Api_HostAddress = https://localhost:7264/api
 
-GET {{Notes.Api_HostAddress}}/weatherforecast/
+GET {{Notes.Api_HostAddress}}/Notes/GetNotesList
 Accept: application/json
 
 ###
