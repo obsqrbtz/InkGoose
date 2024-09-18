@@ -1,0 +1,6 @@
+@InkPandaServer_HostAddress = https://localhost:7193
+
+GET {{InkPandaServer_HostAddress}}/api/Notes/GetNotesList
+Accept: application/json
+
+###
