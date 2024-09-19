@@ -1,3 +1,4 @@
+// MONGODB_URI="mongodb://localhost:27017/"
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

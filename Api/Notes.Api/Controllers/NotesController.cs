@@ -1,5 +1,8 @@
 using InkGoose.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Core.Configuration;
 
 namespace InkGoose.Api.Notes.Controllers
 {
@@ -7,6 +10,8 @@ namespace InkGoose.Api.Notes.Controllers
     [Route("api/[controller]/[action]")]
     public class NotesController : ControllerBase
     {
+        private string? _connectionString;
+        private MongoClient _mongoClient;
         private static List<Note> NotesPlaceholder =
             [
                 new() {Id = Guid.NewGuid(), DateCreated = DateTime.Now, DateModified = DateTime.Now, Archived = false, Title = "First note",
@@ -24,6 +29,14 @@ namespace InkGoose.Api.Notes.Controllers
         public NotesController(ILogger<NotesController> logger)
         {
             _logger = logger;
+            //_connectionString = Environment.GetEnvironmentVariable("MONGODB_URI");
+            _connectionString = "mongodb://localhost:27017";
+            if (_connectionString == null)
+            {
+                Console.WriteLine("You must set your 'MONGODB_URI' environment variable. To learn how to set it, see https://www.mongodb.com/docs/drivers/csharp/current/quick-start/#set-your-connection-string");
+                Environment.Exit(0);
+            }
+            _mongoClient = new MongoClient(_connectionString);
         }
 
         [HttpGet(Name = "GetNotesList")]
@@ -46,7 +59,8 @@ namespace InkGoose.Api.Notes.Controllers
         [HttpPost(Name = "AddNote")]
         public void AddNote(string title, string content)
         {
-            NotesPlaceholder.Add(new Note()
+            var collection = _mongoClient.GetDatabase("InkGoose").GetCollection<Note>("Notes");
+            Note newNote = new Note()
             {
                 Id = Guid.NewGuid(),
                 DateCreated = DateTime.Now,
@@ -54,7 +68,9 @@ namespace InkGoose.Api.Notes.Controllers
                 Archived = false,
                 Title = title,
                 Content = content
-            });
+            };
+            collection.InsertOne(newNote);
+            //NotesPlaceholder.Add(newNote)
         }
 
         [HttpDelete(Name = "DeleteNote")]
