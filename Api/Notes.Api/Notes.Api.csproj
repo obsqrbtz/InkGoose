@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.29.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\InkGoose.Database\InkGoose.Database.csproj" />
     <ProjectReference Include="..\..\Core\InkGoose.Domain\InkGoose.Domain.csproj" />
   </ItemGroup>
 
