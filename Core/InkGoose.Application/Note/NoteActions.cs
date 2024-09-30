@@ -13,8 +13,8 @@ namespace InkGoose.Application.Note
             return new Domain.Entities.Note()
             {
                 Id = Guid.NewGuid(),
-                DateCreated = DateTime.Now,
-                DateModified = DateTime.Now,
+                DateCreated = DateTime.UtcNow,
+                DateModified = DateTime.UtcNow,
                 Archived = false,
                 Title = title,
                 Content = content

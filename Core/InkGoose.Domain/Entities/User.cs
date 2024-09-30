@@ -12,11 +12,13 @@ namespace InkGoose.Domain.Entities
         public string Login { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Email { get; set; }
         public User()
         {
             Login = string.Empty; 
             FirstName = string.Empty; 
             LastName = string.Empty;
+            Email = string.Empty;
         }
     }
 }

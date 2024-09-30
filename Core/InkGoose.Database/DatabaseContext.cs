@@ -11,6 +11,7 @@ namespace InkGoose.Database
     public class DatabaseContext : DbContext
     {
         public DbSet<Note> Notes { get; set; }
+        public DbSet<User> Users { get; set; }
         public DatabaseContext()
         {
             Database.EnsureCreated();
