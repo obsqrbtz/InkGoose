@@ -25,8 +25,8 @@ const props = defineProps({
             <p> {{ noteContent }} </p>
             <div class="grid grid-cols-2 h-8">
                 <button @click="showModal = true" class="btn btn-outline btn-default mx-2">Edit</button>
-                <NoteEdit :isOpen="showModal" @update:isOpen="showModal = $event" :id="id" :title="title"
-                    :noteContent="noteContent" />
+                <NoteEdit :isOpen="showModal" @update:isOpen="showModal = $event" v-on:notesUpdated="reportUpdate"
+                    :id="id" :title="title" :noteContent="noteContent" />
                 <button @click="deleteNote(id)" class="btn btn-outline btn-default mx-2">Delete</button>
             </div>
         </div>
@@ -48,6 +48,9 @@ export default {
             showModal: false
         };
     },
+    emits: {
+        notesUpdated: null
+    },
     methods: {
         async deleteNote(id) {
             const response = await fetch(`${this.apiHost}/DeleteNote?id=${id}`, {
@@ -56,6 +59,11 @@ export default {
                     "Content-type": "application/json; charset=UTF-8"
                 },
             });
+            //this.$router.go()
+            this.$emit('notesUpdated', id);
+        },
+        reportUpdate() {
+            this.$emit('notesUpdated');
         }
     },
 }

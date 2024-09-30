@@ -5,7 +5,8 @@ import NoteCard from './NoteCard.vue'
 <template>
     <button @click="createNote" class="btn btn-neutral m-4">Create note</button>
     <div v-if="data" class="grid grid-cols-3">
-        <NoteCard v-for="item in data" :id="item.id" :title="item.title" :noteContent="item.content" />
+        <NoteCard v-for="item in data" v-on:notesUpdated="fetchNotes" :id="item.id" :title="item.title"
+            :noteContent="item.content" />
     </div>
 </template>
 <script>
@@ -35,6 +36,7 @@ export default {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             });
+            this.fetchNotes()
         }
     }
 };

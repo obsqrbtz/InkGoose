@@ -43,6 +43,10 @@ export default {
             required: true
         }
     },
+    emits: {
+        notesUpdated: null,
+        "update:isOpen": null
+    },
     methods: {
         close() {
             this.$emit('update:isOpen', false);
@@ -61,6 +65,7 @@ export default {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             });
+            this.$emit('notesUpdated');
             this.$emit('update:isOpen', false);
         },
         updateTitle(value) {
