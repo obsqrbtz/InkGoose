@@ -8,14 +8,14 @@
                         <button @click="close" class="btn btn-sm btn-circle btn-ghost">✕</button>
                     </div>
                     <div class="p-2">
-                        <input @input="updateTitle($event.target.value)" type="text" :value="title" placeholder="Title"
+                        <input @input="updateTitle($event.target.value)" type="text" placeholder="Title"
                             class="input w-full max-w-xs" />
                         <textarea @input="updateContent($event.target.value)"
-                            class="textarea textarea-ghost textarea-lg w-full mt-2 max-w-xs" :value="noteContent"
+                            class="textarea textarea-ghost textarea-lg w-full mt-2 max-w-xs"
                             placeholder="Content"></textarea>
                     </div>
                     <div class="flex items-center justify-end p-2">
-                        <button @click="saveNote()" class="btn btn-sm btn-neutral">Save</button>
+                        <button @click="createNote" class="btn btn-sm btn-neutral">Save</button>
                     </div>
                 </div>
             </div>
@@ -29,18 +29,6 @@ export default {
         isOpen: {
             type: Boolean,
             default: false
-        },
-        id: {
-            type: String,
-            required: true
-        },
-        title: {
-            type: String,
-            required: true
-        },
-        noteContent: {
-            type: String,
-            required: true
         }
     },
     emits: {
@@ -51,7 +39,7 @@ export default {
         close() {
             this.$emit('update:isOpen', false);
         },
-        async saveNote() {
+        async createNote() {
             var requestParams = "";
             if (editTitle != undefined) {
                 requestParams += `&title=${editTitle}`;
@@ -59,8 +47,8 @@ export default {
             if (editContent != undefined) {
                 requestParams += `&content=${editContent}`;
             }
-            const response = await fetch(`${this.apiHost}/UpdateNote?id=${this.id}${requestParams}`, {
-                method: "PATCH",
+            const response = await fetch(`${this.apiHost}/AddNote?${requestParams}`, {
+                method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }
