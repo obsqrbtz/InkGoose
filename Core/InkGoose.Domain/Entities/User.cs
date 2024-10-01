@@ -9,16 +9,15 @@ namespace InkGoose.Domain.Entities
 {
     public sealed class User : BaseEntity
     {
-        public string Login { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string UserName { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
+
         public User()
         {
-            Login = string.Empty; 
-            FirstName = string.Empty; 
-            LastName = string.Empty;
+            UserName = string.Empty; 
             Email = string.Empty;
+            Password = string.Empty;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using InkGoose.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace InkGoose.Notes.Api.Database
+namespace InkGoose.Api.Database
 {
     public class DatabaseContext : DbContext
     {

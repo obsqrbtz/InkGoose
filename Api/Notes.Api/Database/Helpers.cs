@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace InkGoose.Notes.Api.Database
+namespace InkGoose.Api.Database
 {
     public static class Helpers
     {

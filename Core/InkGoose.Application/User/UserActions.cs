@@ -15,9 +15,7 @@ namespace InkGoose.Application.User
                 Id = Guid.NewGuid(),
                 DateCreated = DateTime.UtcNow,
                 DateModified = DateTime.UtcNow,
-                FirstName = firstName,
-                LastName = lastName,
-                Login = login,
+                UserName = firstName,
                 Email = email
             };
         }
