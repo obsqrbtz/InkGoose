@@ -25,11 +25,10 @@ namespace InkGoose.Api.Services
             var token = handler.CreateToken(tokenDescriptor);
             return handler.WriteToken(token);
         }
-
         private static ClaimsIdentity GenerateClaims(User user)
         {
             var claims = new ClaimsIdentity();
-            claims.AddClaim(new Claim(ClaimTypes.Name, user.Email));
+            claims.AddClaim(new Claim(ClaimTypes.Email, user.Email));
             return claims;
         }
     }

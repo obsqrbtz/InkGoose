@@ -7,6 +7,8 @@ using InkGoose.Api.Database;
 using InkGoose.Api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace InkGoose.Api.Controllers.Users
 {
@@ -83,9 +85,10 @@ namespace InkGoose.Api.Controllers.Users
         }
         [HttpGet(Name = "SignIn")]
         [Authorize]
-        public string SignIn()
+        public async Task<string> SignIn()
         {
-            return "User Authenticated Successfully!";
+            var emailClaim = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
+            return $"User {emailClaim.Value} authenticated Successfully!";
         }
     }
 }
