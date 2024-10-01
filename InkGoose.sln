@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkGoose.Application", "Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkGoose.Domain", "Core\InkGoose.Domain\InkGoose.Domain.csproj", "{09039F99-D763-4390-87FD-691BCEB8FAED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkGoose.Database", "Core\InkGoose.Database\InkGoose.Database.csproj", "{145C5364-3B3E-4C15-9382-5A1AD75BE121}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{09039F99-D763-4390-87FD-691BCEB8FAED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09039F99-D763-4390-87FD-691BCEB8FAED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09039F99-D763-4390-87FD-691BCEB8FAED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{145C5364-3B3E-4C15-9382-5A1AD75BE121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{145C5364-3B3E-4C15-9382-5A1AD75BE121}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{145C5364-3B3E-4C15-9382-5A1AD75BE121}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{145C5364-3B3E-4C15-9382-5A1AD75BE121}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,7 +39,6 @@ Global
 		{B2726A11-6DFE-4B9A-9C28-63D5A71482F9} = {D766C472-107D-4913-B4AA-72B064BC2100}
 		{57953AED-DF09-464B-B8D5-F9FFCD2FAD92} = {E3B68D79-44AC-4F8E-A45F-6E9CC17811F6}
 		{09039F99-D763-4390-87FD-691BCEB8FAED} = {E3B68D79-44AC-4F8E-A45F-6E9CC17811F6}
-		{145C5364-3B3E-4C15-9382-5A1AD75BE121} = {E3B68D79-44AC-4F8E-A45F-6E9CC17811F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {649ED703-0A4C-4D94-BD7E-AE68BC540B42}
