@@ -39,7 +39,7 @@ const markdown = markdownit({
                                     <h2> {{ editTitle }} </h2>
                                 </div>
                                 <div class="h-3/4">
-                                    <div class="text-left" v-html="markdown.render(editContent)" />
+                                    <article  class="prose" v-html="markdown.render(editContent)" />
                                 </div>
                             </div>
                         </div>
