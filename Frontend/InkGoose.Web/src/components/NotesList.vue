@@ -38,16 +38,23 @@ export default {
     },
     methods: {
         async fetchNotes() {
-            const response = await fetch(`${this.apiHost}/GetNotesList`);
+            const response = await fetch(`${this.apiHost}/Notes/GetNotesList`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+                }
+            });
             this.data = await response.json();
         },
         async createNote() {
             var title = "New note";
             var content = "Note was created successfully";
-            const response = await fetch(`${this.apiHost}/AddNote?title=${title}&content=${content}`, {
+            const response = await fetch(`${this.apiHost}/Notes/AddNote?title=${title}&content=${content}`, {
                 method: "POST",
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
                 }
             });
             this.fetchNotes()

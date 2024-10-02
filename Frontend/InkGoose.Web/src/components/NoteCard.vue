@@ -93,10 +93,11 @@ export default {
     },
     methods: {
         async deleteNote(id) {
-            const response = await fetch(`${this.apiHost}/DeleteNote?id=${id}`, {
+            const response = await fetch(`${this.apiHost}/Notes/DeleteNote?id=${id}`, {
                 method: "DELETE",
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
                 },
             });
             //this.$router.go()

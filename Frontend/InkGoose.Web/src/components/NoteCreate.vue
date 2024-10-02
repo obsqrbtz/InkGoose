@@ -47,10 +47,11 @@ export default {
             if (editContent != undefined) {
                 requestParams += `&content=${editContent}`;
             }
-            const response = await fetch(`${this.apiHost}/AddNote?${requestParams}`, {
+            const response = await fetch(`${this.apiHost}/Notes/AddNote?${requestParams}`, {
                 method: "POST",
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
                 }
             });
             this.$emit('notesUpdated');
