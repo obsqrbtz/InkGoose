@@ -45,6 +45,11 @@ export default {
                     "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
                 }
             });
+            if (response.status === 401) {
+                window.localStorage.removeItem("accessToken");
+                this.$router.push(this.$route.query.redirect || '/Login')
+                return;
+            }
             this.data = await response.json();
         },
         async createNote() {
@@ -57,6 +62,11 @@ export default {
                     "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
                 }
             });
+            if (response.status === 401) {
+                window.localStorage.removeItem("accessToken");
+                this.$router.push(this.$route.query.redirect || '/Login')
+                return;
+            }
             this.fetchNotes()
         }
     }

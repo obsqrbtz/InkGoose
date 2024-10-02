@@ -104,7 +104,11 @@ export default {
                     "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
                 },
             });
-            //this.$router.go()
+            if (response.status === 401) {
+                window.localStorage.removeItem("accessToken");
+                this.$router.push(this.$route.query.redirect || '/Login')
+                return;
+            }
             this.$emit('notesUpdated', id);
         },
         reportUpdate() {
