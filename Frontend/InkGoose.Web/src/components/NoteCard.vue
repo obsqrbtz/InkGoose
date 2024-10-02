@@ -11,6 +11,10 @@ const props = defineProps({
     noteContent: {
         type: String,
         required: true
+    },
+    dateCreated: {
+        type: Date,
+        required: true
     }
 });
 
@@ -41,7 +45,7 @@ const props = defineProps({
         </div>
         <div>
             <div class="flex items-center justify-between text-gray-800 dark:text-gray-100">
-                <p class="text-sm">March 28, 2020</p>
+                <p class="text-sm">{{ new Date(dateCreated).toLocaleString() }}</p>
                 <div class="flex">
                     <button @click="showModal = true"
                         class="mr-2 w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"

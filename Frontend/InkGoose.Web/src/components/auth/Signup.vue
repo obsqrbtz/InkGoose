@@ -13,13 +13,18 @@
                 </div>
                 <div>
                     <label class="label">
+                        <span class="text-base label-text">User name</span>
+                    </label>
+                    <input ref="username" type="text" placeholder="User name" class="w-full input input-bordered" />
+                </div>
+                <div>
+                    <label class="label">
                         <span class="text-base label-text">Password</span>
                     </label>
                     <input ref="password" type="password" placeholder="Enter Password" class="w-full input input-bordered" />
                 </div>
-                <div class="flex justify-center">
-                    <button @click.prevent="login()" class="btn btn-neutral mr-2">Login</button>
-                    <button @click.prevent="toSignup()" class="btn btn-neutral">Signup</button>
+                <div>
+                    <button @click.prevent="signin()" class="btn btn-block btn-neutral">Signup</button>
                 </div>
             </form>
         </div>
@@ -39,30 +44,19 @@ export default {
         };
     },
     methods: {
-        async login() {
+        async signin() {
             var email = this.$refs.email.value;
+            var username = this.$refs.username.value;
             var password = this.$refs.password.value;
-            const response = await fetch(`${this.apiHost}/Users/Authenticate?email=${email}&password=${password}`, {
+            const response = await fetch(`${this.apiHost}/Users/AddUser?userName=${username}&email=${email}&password=${password}`, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 },
             });
             if (response.ok) {
-                var token = (await response.text()).toString()
-                window.localStorage.setItem("accessToken", token);
-                const checkAuth = await fetch(`${this.apiHost}/Users/SignIn`, {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8",
-                        "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
-                    },
-                });
-                this.$router.push(this.$route.query.redirect || '/Notes')
+                this.$router.push(this.$route.query.redirect || '/Login');
             }
-        },
-        async toSignup() {
-            this.$router.push(this.$route.query.redirect || '/Signup')
         },
     }
 };

@@ -1,12 +1,13 @@
 <script setup>
 
+import NotesList from './components/NotesList.vue'
 import Navbar from './components/Navbar.vue'
-import Hero from './components/Hero.vue'
 
 </script>
 
 <template>
     <main>
-        <Hero />
+        <Navbar />
+        <NotesList />
     </main>
 </template>

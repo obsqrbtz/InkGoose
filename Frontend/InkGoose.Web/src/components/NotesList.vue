@@ -16,7 +16,7 @@ import NoteCreate from './NoteCreate.vue'
     <div v-if="data" class="mx-auto container px-6">
         <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <NoteCard v-for="item in data" v-on:notesUpdated="fetchNotes" :id="item.id" :title="item.title"
-                :noteContent="item.content" />
+                :noteContent="item.content" :dateCreated="item.dateCreated" />
         </div>
     </div>
 </template>
