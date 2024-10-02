@@ -74,10 +74,6 @@ const props = defineProps({
 
 <script>
 import NoteEdit from './NoteEdit.vue'
-import { ref } from 'vue';
-const components = {
-    NoteEdit,
-}
 export default {
     components: {
         NoteEdit
