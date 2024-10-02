@@ -45,7 +45,7 @@ namespace InkGoose.Api.Controllers.Notes
 
         [HttpPost(Name = "AddNote")]
         [Authorize]
-        public void AddNote(string title, string content)
+        public void AddNote([FromBody] RequestBody requestParams)
         {
             var user = Api.Controllers.Helpers.GetUser(HttpContext.User, _context);
             if (user is null)
@@ -58,8 +58,8 @@ namespace InkGoose.Api.Controllers.Notes
                 DateCreated = DateTime.UtcNow,
                 DateModified = DateTime.UtcNow,
                 Archived = false,
-                Title = title,
-                Content = content,
+                Title = requestParams.title,
+                Content = requestParams.content,
                 UserID = user.Id
             };
             Database.Helpers.CreateNote(newNote, _context);
@@ -76,29 +76,37 @@ namespace InkGoose.Api.Controllers.Notes
             }
             Database.Helpers.DeleteNote(id, _context, user.Id);
         }
+        // TODO: move request models somewhere
+        public class RequestBody
+        {
+            [FromBody] public Guid id { get; set; }
+            [FromBody] public bool archived { get; set; }
+            [FromBody] public string? title { get; set; }
+            [FromBody] public string? content { get; set; }
+        }
 
         [HttpPatch(Name = "UpdateNote")]
         [Authorize]
-        public void UpdateNote(Guid id, bool archived, string? title = null, string? content = null)
+        public void UpdateNote([FromBody]RequestBody requestParams)
         {
             var user = Api.Controllers.Helpers.GetUser(HttpContext.User, _context);
             if (user is null)
             {
                 return;
             }
-            var note = Database.Helpers.GetNote(id, _context);
+            var note = Database.Helpers.GetNote(requestParams.id, _context);
             if (note.UserID != user.Id)
             {
                 return;
             }
-            note.Archived = archived;
-            if (!string.IsNullOrEmpty(title))
+            note.Archived = requestParams.archived;
+            if (!string.IsNullOrEmpty(requestParams.title))
             {
-                note.Title = title;
+                note.Title = requestParams.title;
             }
-            if (!string.IsNullOrEmpty(content))
+            if (!string.IsNullOrEmpty(requestParams.content))
             {
-                note.Content = content;
+                note.Content = requestParams.content;
             }
             note.DateModified = DateTime.UtcNow;
             Database.Helpers.UpdateNote(note, _context);

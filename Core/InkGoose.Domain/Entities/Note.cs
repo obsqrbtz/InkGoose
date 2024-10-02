@@ -10,8 +10,8 @@ namespace InkGoose.Domain.Entities
     public class Note : BaseEntity
     {
         public bool Archived { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
+        public string? Title { get; set; }
+        public string? Content { get; set; }
         public Guid UserID { get; set; }
         public Note()
         {
