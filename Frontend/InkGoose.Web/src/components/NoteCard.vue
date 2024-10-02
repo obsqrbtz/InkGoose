@@ -21,20 +21,6 @@ const props = defineProps({
 </script>
 
 <template>
-    <!-- <div class="card bg-base-100 w-96 shadow-md m-4">
-        <div class="card-body">
-            <h2 class="card-title">
-                {{ title }}
-            </h2>
-            <p> {{ noteContent }} </p>
-            <div class="grid grid-cols-2 h-8">
-                <button @click="showModal = true" class="btn btn-outline btn-default mx-2">Edit</button>
-                <NoteEdit :isOpen="showModal" @update:isOpen="showModal = $event" v-on:notesUpdated="reportUpdate"
-                    :id="id" :title="title" :noteContent="noteContent" />
-                <button @click="deleteNote(id)" class="btn btn-outline btn-default mx-2">Delete</button>
-            </div>
-        </div>
-    </div> -->
     <NoteEdit :isOpen="showModal" @update:isOpen="showModal = $event" v-on:notesUpdated="reportUpdate" :id="id"
         :title="title" :noteContent="noteContent" />
     <div

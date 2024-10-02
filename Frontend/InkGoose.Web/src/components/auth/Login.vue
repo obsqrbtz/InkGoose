@@ -15,7 +15,8 @@
                     <label class="label">
                         <span class="text-base label-text">Password</span>
                     </label>
-                    <input ref="password" type="password" placeholder="Enter Password" class="w-full input input-bordered" />
+                    <input ref="password" type="password" placeholder="Enter Password"
+                        class="w-full input input-bordered" />
                 </div>
                 <div class="flex justify-center">
                     <button @click.prevent="login()" class="btn btn-neutral mr-2">Login</button>
@@ -48,18 +49,25 @@ export default {
                     "Content-type": "application/json; charset=UTF-8"
                 },
             });
-            if (response.ok) {
-                var token = (await response.text()).toString()
-                window.localStorage.setItem("accessToken", token);
-                const checkAuth = await fetch(`${this.apiHost}/Users/SignIn`, {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8",
-                        "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
-                    },
-                });
-                this.$router.push(this.$route.query.redirect || '/Notes')
+            if (!response.ok) {
+                alert("Invalid credentials. Please try again.");
+                return;
             }
+            var token = (await response.text()).toString()
+            const checkAuth = await fetch(`${this.apiHost}/Users/SignIn`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+                },
+            });
+            if (!response.ok) {
+                alert("Failed to authenticate. Please try again.");
+                return;
+            }
+            window.localStorage.setItem("email", email);
+            window.localStorage.setItem("accessToken", token);
+            this.$router.push(this.$route.query.redirect || '/Notes')
         },
         async toSignup() {
             this.$router.push(this.$route.query.redirect || '/Signup')

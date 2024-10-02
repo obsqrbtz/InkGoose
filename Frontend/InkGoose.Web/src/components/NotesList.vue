@@ -4,19 +4,24 @@ import NoteCreate from './NoteCreate.vue'
 </script>
 
 <template>
-    <!-- <button @click="createNote" class="btn btn-neutral m-4">Create note</button>
-    <div v-if="data" class="grid grid-cols-3">
-        <NoteCard v-for="item in data" v-on:notesUpdated="fetchNotes" :id="item.id" :title="item.title"
-            :noteContent="item.content" />
-    </div> -->
-
-    <button @click="showModal = true" class="btn btn-neutral m-4 ml-24">New note</button>
     <NoteCreate :isOpen="showModal" @update:isOpen="showModal = $event" v-on:notesUpdated="fetchNotes" :id="id"
         :title="title" :noteContent="noteContent" />
-    <div v-if="data" class="mx-auto container px-6">
-        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <NoteCard v-for="item in data" v-on:notesUpdated="fetchNotes" :id="item.id" :title="item.title"
-                :noteContent="item.content" :dateCreated="item.dateCreated" />
+    <div class="flex">
+        <div class="basis-1/8">
+            <button @click="showModal = true"
+                class="sticky top-4 ml-4 w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+        </div>
+        <div v-if="data" class="container px-6">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <NoteCard v-for="item in data" v-on:notesUpdated="fetchNotes" :id="item.id" :title="item.title"
+                    :noteContent="item.content" :dateCreated="item.dateCreated" />
+            </div>
         </div>
     </div>
 </template>
