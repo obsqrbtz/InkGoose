@@ -1,4 +1,12 @@
 <script setup>
+
+import markdownit from 'markdown-it'
+const markdown = markdownit({
+    html: true,
+    linkify: true,
+    typographer: true
+});
+
 const props = defineProps({
     id: {
         type: String,
@@ -27,10 +35,11 @@ const props = defineProps({
         class="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4">
         <div>
             <h4 class="text-gray-800 dark:text-gray-100 font-bold mb-3">{{ title }}</h4>
-            <p class="text-gray-800 dark:text-gray-100 text-sm">{{ noteContent }}</p>
+            <!-- <p class="text-gray-800 dark:text-gray-100 text-sm">{{ noteContent }}</p> -->
+            <div v-html="markdown.render(noteContent)" />
         </div>
         <div>
-            <div class="flex items-center justify-between text-gray-800 dark:text-gray-100">
+            <div class=" flex items-center justify-between text-gray-800 dark:text-gray-100">
                 <p class="text-sm">{{ new Date(dateCreated).toLocaleString() }}</p>
                 <div class="flex">
                     <button @click="showModal = true"
