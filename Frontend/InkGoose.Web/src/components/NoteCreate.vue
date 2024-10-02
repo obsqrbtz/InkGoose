@@ -1,3 +1,11 @@
+<script setup>
+import markdownit from 'markdown-it'
+const markdown = markdownit({
+    html: true,
+    linkify: true,
+    typographer: true
+});
+</script>
 <template>
     <teleport to="body">
         <div class="fixed inset-0 overflow-y-auto bg-black bg-opacity-50" v-if="isOpen">
@@ -12,14 +20,29 @@
                             <button @click="close" class="btn btn-sm btn-circle btn-ghost">✕</button>
                         </div>
                     </div>
-                    <div class="p-2">
-                        <input @input="updateTitle($event.target.value)" type="text" :value="title" placeholder="Title"
-                            class="input w-full focus:border-none focus:outline-none font-bold" />
-                    </div>
-                    <div class="h-3/4">
-                        <textarea @input="updateContent($event.target.value)"
-                            class="textarea textarea-ghost textarea-lg h-full whitespace-break-spaces w-full focus:border-none focus:outline-none"
-                            :value="noteContent" placeholder="Content"></textarea>
+                    <div class="flex w-full flex-col lg:flex-row h-full">
+                        <div class="w-full">
+                            <div class="p-2">
+                                <input v-model="editTitle" type="text" placeholder="Title"
+                                    class="input w-full focus:border-none focus:outline-none font-bold" />
+                            </div>
+                            <div class="h-3/4">
+                                <textarea v-model="editContent"
+                                    class="textarea textarea-ghost textarea-lg h-full whitespace-break-spaces w-full focus:border-none focus:outline-none"
+                                    placeholder="Content"></textarea>
+                            </div>
+                        </div>
+                        <div class="divider lg:divider-horizontal" />
+                        <div class="w-full">
+                            <div class="">
+                                <div class="p-2">
+                                    <h2> {{ editTitle }} </h2>
+                                </div>
+                                <div class="h-3/4">
+                                    <div class="text-left" v-html="markdown.render(editContent)" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -35,6 +58,12 @@ export default {
             default: false
         }
     },
+    data() {
+        return {
+            editTitle: '',
+            editContent: ""
+        }
+    },
     emits: {
         notesUpdated: null,
         "update:isOpen": null
@@ -46,8 +75,8 @@ export default {
         async createNote() {
             var params = {
                 id: this.id,
-                title: editTitle,
-                content: editContent
+                title: this.editTitle,
+                content: this.editContent
             };
             var reqBody = JSON.stringify(params);
             const response = await fetch(`${this.apiHost}/Notes/AddNote`, {
@@ -65,15 +94,7 @@ export default {
             }
             this.$emit('notesUpdated');
             this.$emit('update:isOpen', false);
-        },
-        updateTitle(value) {
-            editTitle = value
-        },
-        updateContent(value) {
-            editContent = value
         }
     }
 };
-var editTitle;
-var editContent;
 </script>
