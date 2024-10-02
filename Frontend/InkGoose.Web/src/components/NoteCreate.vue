@@ -28,18 +28,18 @@ const markdown = markdownit({
                             </div>
                             <div class="h-3/4">
                                 <textarea v-model="editContent"
-                                    class="textarea textarea-ghost textarea-lg h-full whitespace-break-spaces w-full focus:border-none focus:outline-none"
+                                    class="pl-6 leading-snug font-mono textarea textarea-ghost textarea-md h-full whitespace-break-spaces w-full focus:border-none focus:outline-none"
                                     placeholder="Content"></textarea>
                             </div>
                         </div>
                         <div class="divider lg:divider-horizontal" />
                         <div class="w-full">
                             <div class="">
-                                <div class="p-2">
-                                    <h2> {{ editTitle }} </h2>
+                                <div class="text-left prose prose-md ml-2 mb-8">
+                                    <h1> {{ editTitle }} </h1>
                                 </div>
-                                <div class="h-3/4">
-                                    <article  class="prose" v-html="markdown.render(editContent)" />
+                                <div class=" h-3/4">
+                                    <div class="prose prose-md text-left m-2" v-html="markdown.render(editContent)" />
                                 </div>
                             </div>
                         </div>
