@@ -31,5 +31,14 @@ namespace InkGoose.Api.Services
             claims.AddClaim(new Claim(ClaimTypes.Email, user.Email));
             return claims;
         }
+        public static string? GetEmail(ClaimsPrincipal user)
+        {
+            var email = user.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
+            if (email is null)
+            {
+                return null;
+            }
+            return email.Value;
+        }
     }
 }

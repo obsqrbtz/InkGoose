@@ -1,4 +1,5 @@
-﻿using InkGoose.Domain.Entities;
+﻿using InkGoose.Api.Services;
+using InkGoose.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -11,16 +12,16 @@ namespace InkGoose.Api.Database
             db.Notes.Add(note);
             db.SaveChanges();
         }
-        public static IEnumerable<Note> GetNotes(DatabaseContext db)
+        public static IEnumerable<Note> GetNotes(DatabaseContext db, Guid userId)
         {
             List<Note> notes = new();
-            notes = db.Notes.ToList<Note>();
+            notes = db.Notes.ToList<Note>().FindAll(x => x.UserID == userId);
             return notes;
         }
-        public static Note GetLast(DatabaseContext db)
+        public static Note GetLast(DatabaseContext db, Guid userId)
         {
             Note? note;
-            note = db.Notes.ToList().MaxBy(x => x.DateCreated);
+            note = db.Notes.ToList().FindAll(x => x.UserID == userId).MaxBy(x => x.DateCreated);
             if (note is null)
             {
                 return new Note();
@@ -28,9 +29,9 @@ namespace InkGoose.Api.Database
             return note;
         }
 
-        public static void DeleteNote(Guid id, DatabaseContext db)
+        public static void DeleteNote(Guid id, DatabaseContext db, Guid userId)
         {
-            db.Notes.Where(x => x.Id == id).ExecuteDelete();
+            db.Notes.Where(x => x.Id == id && x.UserID == userId).ExecuteDelete();
         }
         public static void UpdateNote(Note note, DatabaseContext db)
         {
@@ -74,6 +75,16 @@ namespace InkGoose.Api.Database
             if (user is null)
             {
                 return new User();
+            }
+            return user;
+        }
+        public static User? GetUser(string email, DatabaseContext db)
+        {
+            // TODO: check for default values
+            var user = db.Users.FirstOrDefault(x => x.Email == email);
+            if (user is null)
+            {
+                return null;
             }
             return user;
         }

@@ -69,26 +69,25 @@ namespace InkGoose.Api.Controllers.Users
         public string Authenticate(string email, string password)
         {
             User? user = _context.Users.FirstOrDefault(x => x.Email == email);
-            if (user is not null)
+            if (user is null)
             {
-                var verificationResult = _hasher.VerifyHashedPassword(user, user.Password, password);
-                if (verificationResult == PasswordVerificationResult.Success)
-                {
-                    return _authService.GenerateToken(user);
-                }
-                else
-                {
-                    return "Incorrect password";
-                }
+                return "User not found";
             }
-            return "User not found";
+            PasswordVerificationResult passCheck = _hasher.VerifyHashedPassword(user, user.Password, password);
+            if (passCheck == PasswordVerificationResult.Success)
+            {
+                return _authService.GenerateToken(user);
+            }
+            else
+            {
+                return "Incorrect password";
+            }            
         }
         [HttpGet(Name = "SignIn")]
         [Authorize]
-        public async Task<string> SignIn()
+        public string SignIn()
         {
-            var emailClaim = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
-            return $"User {emailClaim.Value} authenticated Successfully!";
+            return $"User {AuthService.GetEmail(HttpContext.User)} authenticated Successfully!";
         }
     }
 }
