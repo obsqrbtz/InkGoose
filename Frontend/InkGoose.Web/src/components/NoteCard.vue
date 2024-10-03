@@ -33,9 +33,8 @@ const props = defineProps({
         :title="title" :noteContent="noteContent" />
     <div
         class="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-4 px-4">
-        <div class = "overflow-y-auto prose prose-sm">
+        <div class="overflow-y-auto prose prose-sm">
             <h2>{{ title }}</h2>
-            <!-- <p class="text-gray-800 dark:text-gray-100 text-sm">{{ noteContent }}</p> -->
             <div v-html="markdown.render(noteContent)" />
         </div>
         <div>
@@ -66,7 +65,6 @@ const props = defineProps({
                         </svg>
                     </button>
                 </div>
-                <!-- <button @click="deleteNote(id)" class="btn btn-outline btn-default mx-2">Delete</button> -->
             </div>
         </div>
     </div>
@@ -100,7 +98,7 @@ export default {
                 this.$router.push(this.$route.query.redirect || '/Login')
                 return;
             }
-            this.$emit('notesUpdated', id);
+            this.$emit('notesUpdated');
         },
         reportUpdate() {
             this.$emit('notesUpdated');

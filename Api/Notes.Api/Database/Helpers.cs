@@ -15,7 +15,7 @@ namespace InkGoose.Api.Database
         public static IEnumerable<Note> GetNotes(DatabaseContext db, Guid userId)
         {
             List<Note> notes = new();
-            notes = db.Notes.ToList<Note>().FindAll(x => x.UserID == userId);
+            notes = db.Notes.OrderByDescending(x => x.DateCreated).ToList<Note>().FindAll(y => y.UserID == userId);
             return notes;
         }
         public static Note GetLast(DatabaseContext db, Guid userId)

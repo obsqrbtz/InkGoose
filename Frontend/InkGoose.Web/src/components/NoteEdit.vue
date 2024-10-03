@@ -1,5 +1,6 @@
 <script setup>
 import markdownit from 'markdown-it'
+import NoteView from './NoteView.vue'
 const markdown = markdownit({
     html: true,
     linkify: true,
@@ -20,30 +21,8 @@ const markdown = markdownit({
                             <button @click="close" class="btn btn-sm btn-circle btn-ghost">✕</button>
                         </div>
                     </div>
-                    <div class="flex w-full flex-col lg:flex-row h-full">
-                        <div class="w-full">
-                            <div class="pl-2">
-                                <input v-model="editTitle" type="text" placeholder="Title"
-                                    class="input w-full focus:border-none focus:outline-none font-bold" />
-                            </div>
-                            <div class="h-3/4">
-                                <textarea v-model="editContent"
-                                    class="pl-6 leading-snug font-mono textarea textarea-ghost textarea-md h-full whitespace-break-spaces w-full focus:border-none focus:outline-none"
-                                    placeholder="Content"></textarea>
-                            </div>
-                        </div>
-                        <div class="divider lg:divider-horizontal" />
-                        <div class="w-full">
-                            <div class="">
-                                <div class="text-left prose prose-md ml-2 mb-8">
-                                    <h1> {{ editTitle }} </h1>
-                                </div>
-                                <div class=" h-3/4">
-                                    <div class="prose prose-md text-left m-2" v-html="markdown.render(editContent)" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <NoteView :id="id" :title="title" :noteContent="noteContent" @titleUpdated="updateTitle"
+                        @contentUpdated="updateContent" />
                 </div>
             </div>
         </div>
@@ -83,6 +62,12 @@ export default {
     methods: {
         close() {
             this.$emit('update:isOpen', false);
+        },
+        updateTitle(newTitle) {
+            this.editTitle = newTitle;
+        },
+        updateContent(newContent) {
+            this.editContent = newContent;
         },
         async saveNote() {
             var params = {

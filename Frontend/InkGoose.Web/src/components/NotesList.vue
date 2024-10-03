@@ -4,7 +4,7 @@ import NoteCreate from './NoteCreate.vue'
 </script>
 
 <template>
-    <NoteCreate :isOpen="showModal" @update:isOpen="showModal = $event" v-on:notesUpdated="fetchNotes"/>
+    <NoteCreate :isOpen="showModal" @update:isOpen="showModal = $event" v-on:notesUpdated="fetchNotes" />
     <div class="flex">
         <div class="basis-1/8">
             <button @click="showModal = true"

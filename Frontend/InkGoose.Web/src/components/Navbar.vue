@@ -5,7 +5,7 @@ import ThemeToggle from './ThemeToggle.vue'
 <template>
     <div class="navbar bg-base-100 flex sticky top-0">
         <div class="navbar-start basis-1/4">
-            <a class="btn btn-ghost text-xl">ink goose</a>
+            <router-link class="btn btn-ghost text-xl" to="/Notes">ink goose</router-link>
         </div>
         <div class="navbar-center basis-1/2">
             <label class="input input-bordered flex items-center gap-2 w-full">
