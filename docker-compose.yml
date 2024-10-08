@@ -20,10 +20,13 @@ services:
     image: postgres:latest
     env_file:
       - .env
+    expose:
+        - "${POSTGRES_PORT}"
     ports:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    command: -p ${POSTGRES_PORT}
 
 volumes:  
   pgdata: {}
