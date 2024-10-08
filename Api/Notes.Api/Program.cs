@@ -10,10 +10,14 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+string dbUser = Environment.GetEnvironmentVariable("POSTGRES_USER");
+string dbPassword = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
+string dbHost = Environment.GetEnvironmentVariable("POSTGRES_HOST");
+string dbPort = Environment.GetEnvironmentVariable("POSTGRES_PORT");
+string dbName = Environment.GetEnvironmentVariable("POSTGRES_DB");
 
 builder.Services.AddDbContext<DatabaseContext>(
-    options => options.UseNpgsql("Host=localhost;Port=5432;Database=inkgoose;Username=postgres;Password=44435777"));
+    options => options.UseNpgsql($"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}"));
 
 builder.Services.AddTransient<AuthService>();
 
@@ -74,13 +78,16 @@ builder.Services.AddSwaggerGen(c =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// if (app.Environment.IsDevelopment())
+// {
+//     app.UseSwagger();
+//     app.UseSwaggerUI();
+// }
 
-app.UseHttpsRedirection();
+app.UseSwagger();
+app.UseSwaggerUI();
+
+// app.UseHttpsRedirection();
 
 app.UseCors(builder => builder
     .AllowAnyOrigin()

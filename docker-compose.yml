@@ -1,0 +1,29 @@
+name: inkgoose
+
+services:
+  inkgoose-api:
+    container_name: inkgoose-api
+    tty: true
+    image: obsqrbtz/inkgoose-api:1.0.0
+    build: 
+      context: .
+      dockerfile: Api/Notes.Api/Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "${API_PORT}:8080"
+    restart: on-failure:3
+    depends_on:
+      - inkgoose-db
+  inkgoose-db:  
+    container_name: inkgoose-db
+    image: postgres:latest
+    env_file:
+      - .env
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:  
+  pgdata: {}
