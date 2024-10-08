@@ -14,6 +14,7 @@ POSTGRES_HOST="inkgoose-db"
 POSTGRES_PORT="5432"
 POSTGRES_DB="inkgoose"
 API_PORT="3033"
+WEB_PORT="3034"
 ```
 
 ## Frontend

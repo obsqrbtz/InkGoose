@@ -1,0 +1,33 @@
+name: Update website
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch updates and restart node
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd ~/dev/InkGoose
+            git reset --hard
+            git pull
+            echo ${{ secrets.PASSWORD }} | sudo docker-compose down
+            echo ${{ secrets.PASSWORD }} | sudo docker compose build
+            echo ${{ secrets.PASSWORD }} | sudo docker compose up -d
