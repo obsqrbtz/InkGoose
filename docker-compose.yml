@@ -1,6 +1,17 @@
 name: inkgoose
 
 services:
+  inkgoose-web:
+    container_name: inkgoose-web
+    tty: true
+    image: obsqrbtz/inkgoose-web:1.0.0
+    build: 
+      context: .
+      dockerfile: Frontend/InkGoose.Web/Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "${WEB_PORT}:80"
   inkgoose-api:
     container_name: inkgoose-api
     tty: true
