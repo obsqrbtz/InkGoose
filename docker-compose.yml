@@ -8,6 +8,8 @@ services:
     build: 
       context: .
       dockerfile: Frontend/InkGoose.Web/Dockerfile
+      args:
+        - VITE_API_HOST=${VITE_API_HOST}
     env_file:
       - .env
     ports:

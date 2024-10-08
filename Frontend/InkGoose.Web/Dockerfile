@@ -1,6 +1,8 @@
 FROM node:20 as build-stage
 WORKDIR /build
 
+ARG VITE_API_HOST
+
 COPY Frontend/InkGoose.Web .
 RUN npm install
 RUN npm run build
