@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
 
       - name: Fetch updates, rebuild and restart containers
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@v1.1.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
