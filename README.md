@@ -24,3 +24,10 @@ VITE_API_HOST="http://localhost:$API_PORT"
 
 - Vue.js
 - Tailwind CSS + DaisyUI
+
+## Run
+
+```bash
+docker compose build
+docker compose up -d
+```
