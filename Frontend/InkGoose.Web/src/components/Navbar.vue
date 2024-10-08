@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ThemeToggle from './ThemeToggle.vue'
 </script>
 
@@ -25,7 +25,7 @@ import ThemeToggle from './ThemeToggle.vue'
     </div>
 </template>
 
-<script>
+<script lang="ts">
 var email;
 export default {
     created() {

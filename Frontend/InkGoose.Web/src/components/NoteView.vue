@@ -1,5 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import markdownit from 'markdown-it'
+import { defineComponent } from 'vue';
 const markdown = markdownit({
     html: true,
     linkify: true,
@@ -34,8 +35,8 @@ const emit = defineEmits(['titleUpdated', 'contentUpdated'])
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+export default defineComponent({
     props: {
         id: {
             type: String,
@@ -56,5 +57,5 @@ export default {
             editContent: this.noteContent
         }
     },
-};
+})
 </script>

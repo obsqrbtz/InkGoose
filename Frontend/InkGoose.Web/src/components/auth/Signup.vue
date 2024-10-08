@@ -21,7 +21,8 @@
                     <label class="label">
                         <span class="text-base label-text">Password</span>
                     </label>
-                    <input ref="password" type="password" placeholder="Enter Password" class="w-full input input-bordered" />
+                    <input ref="password" type="password" placeholder="Enter Password"
+                        class="w-full input input-bordered" />
                 </div>
                 <div>
                     <button @click.prevent="signin()" class="btn btn-block btn-neutral">Signup</button>
@@ -31,7 +32,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
     created() {
         if (window.localStorage.getItem("accessToken")) {

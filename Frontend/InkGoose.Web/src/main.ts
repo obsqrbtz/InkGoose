@@ -60,7 +60,7 @@ router.beforeEach((to, from, next) => {
 })
 
 const app = createApp(App)
-app.config.globalProperties.apiHost = "https://localhost:7264/api"
+app.config.globalProperties.apiHost = "https://gooseapi.obsqrbtz.space/api"
 app.use(router)
 app.mount('#app')
 

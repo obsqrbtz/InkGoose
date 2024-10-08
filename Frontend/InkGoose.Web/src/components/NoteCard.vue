@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 
 import markdownit from 'markdown-it'
 const markdown = markdownit({
@@ -70,7 +70,7 @@ const props = defineProps({
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import NoteEdit from './NoteEdit.vue'
 export default {
     components: {

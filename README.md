@@ -3,6 +3,7 @@
 ## Backend
 
 - Asp .NET Core Web API
+- PostgreSQL
 
 ### .env
 
@@ -21,8 +22,3 @@ API_PORT="3033"
 
 - Vue.js
 - Tailwind CSS + DaisyUI
-
-### Desktop
-
-- .NET
-- AvaloniaUI

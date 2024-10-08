@@ -1,6 +1,18 @@
-<script setup>
+<script setup lang="ts">
 import NoteCard from './NoteCard.vue'
 import NoteCreate from './NoteCreate.vue'
+
+import { defineComponent } from 'vue';
+
+type Note = {
+    id: string;
+    title: string;
+    archived: boolean;
+    content: string;
+    dateCreated: Date;
+    dateModified: Date;
+};
+
 </script>
 
 <template>
@@ -18,15 +30,15 @@ import NoteCreate from './NoteCreate.vue'
         </div>
         <div v-if="data" class="container px-6">
             <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <NoteCard v-for="item in data" v-on:notesUpdated="fetchNotes" :id="item.id" :title="item.title"
-                    :noteContent="item.content" :dateCreated="item.dateCreated" />
+                <NoteCard v-for="item in data as Note[]" v-on:notesUpdated="fetchNotes" :id="item.id"
+                    :title="item.title" :noteContent="item.content" :dateCreated="item.dateCreated" />
             </div>
         </div>
     </div>
 </template>
-<script>
-import { ref } from 'vue';
-export default {
+
+<script lang="ts">
+export default defineComponent({
     created() {
         this.fetchNotes();
     },
@@ -74,5 +86,5 @@ export default {
             this.fetchNotes()
         }
     }
-};
+})
 </script>
