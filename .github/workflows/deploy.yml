@@ -6,8 +6,9 @@ on:
       - "master"
 
 jobs:
-  update:
+  deploy:
     runs-on: ubuntu-latest
+    if: ${{ contains(github.event.head_commit.message, '#deploy') }}
     permissions:
       contents: read
 
@@ -17,7 +18,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Fetch updates and restart node
+      - name: Fetch updates, rebuild and restart containers
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
