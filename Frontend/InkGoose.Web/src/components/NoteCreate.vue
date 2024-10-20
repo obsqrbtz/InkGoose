@@ -9,12 +9,12 @@ const markdown = markdownit({
 </script>
 <template>
     <teleport to="body">
-        <div class="fixed inset-0 overflow-y-auto bg-neutral-900 dark:bg-gray-100 bg-opacity-50" v-if="isOpen">
+        <div class="fixed inset-0 overflow-y-auto bg-base bg-opacity-50" v-if="isOpen">
             <div class="flex items-start justify-center h-4/5 mt-24 text-center">
-                <div class="bg-neutral-900 dark:bg-gray-100 dark:text-gray-800 text-white rounded-lg shadow-xl w-6/12 h-full m-4">
+                <div class="bg-base text-base-content border border-base-300 rounded-lg w-6/12 h-full m-4">
                     <slot></slot>
                     <div class="flex w-full p-2">
-                        <div class="flex w-full justify-start">
+                        <div class="flex w-full justify-start ml-2 mt-2">
                             <button @click="createNote()" class="btn btn-sm btn-neutral">Save</button>
                         </div>
                         <div class="flex w-full justify-end">
