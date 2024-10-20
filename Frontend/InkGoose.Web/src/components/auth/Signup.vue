@@ -1,6 +1,6 @@
 <template>
     <div class="relative flex flex-col items-center justify-center h-screen overflow-hidden">
-        <div class="w-full p-6 bg-base text-base-content border border-base-300 rounded-md3 lg:max-w-lg">
+        <div class="w-full p-6 bg-base-100  text-base-content border border-base-300 rounded-md3 lg:max-w-lg">
             <h1 class="text-3xl font-semibold text-center text-content">
                 ink goose
             </h1>

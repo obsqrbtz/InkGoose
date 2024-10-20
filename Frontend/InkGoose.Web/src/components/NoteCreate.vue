@@ -9,9 +9,9 @@ const markdown = markdownit({
 </script>
 <template>
     <teleport to="body">
-        <div class="fixed inset-0 overflow-y-auto bg-base bg-opacity-50" v-if="isOpen">
+        <div class="fixed inset-0 overflow-y-auto bg-base-100  bg-opacity-50" v-if="isOpen">
             <div class="flex items-start justify-center h-4/5 mt-24 text-center">
-                <div class="bg-base text-base-content border border-base-300 rounded-lg w-6/12 h-full m-4">
+                <div class="bg-base-100  text-base-content border border-base-300 rounded-lg w-6/12 h-full m-4">
                     <slot></slot>
                     <div class="flex w-full p-2">
                         <div class="flex w-full justify-start ml-2 mt-2">

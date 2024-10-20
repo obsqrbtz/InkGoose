@@ -9,15 +9,15 @@ const markdown = markdownit({
 const emit = defineEmits(['titleUpdated', 'contentUpdated'])
 </script>
 <template>
-    <div class="flex w-full flex-col lg:flex-row h-full bg-base base-content ">
+    <div class="flex w-full flex-col lg:flex-row h-full bg-base-100  base-content ">
         <div class="w-full">
             <div class="p-2">
                 <input v-model="editTitle" @input="$emit('titleUpdated', editTitle)" type="text" placeholder="Title"
-                    class="input w-full bg-base  focus:border-none focus:outline-none font-bold" />
+                    class="input w-full bg-base-100   focus:border-none focus:outline-none font-bold" />
             </div>
             <div class="h-3/4">
                 <textarea v-model="editContent" @input="$emit('contentUpdated', editContent)"
-                    class="pl-6 bg-base leading-snug font-mono textarea textarea-ghost textarea-md h-full whitespace-break-spaces w-full focus:border-none focus:outline-none"
+                    class="pl-6 bg-base-100  leading-snug font-mono textarea textarea-ghost textarea-md h-full whitespace-break-spaces w-full focus:border-none focus:outline-none"
                     placeholder="Content"></textarea>
             </div>
         </div>

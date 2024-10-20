@@ -3,7 +3,7 @@ import ThemeToggle from './ThemeToggle.vue'
 </script>
 
 <template>
-    <div class="navbar bg-base-100 flex sticky top-0">
+    <div class="navbar bg-base-100 -100 flex sticky top-0">
         <div class="navbar-start basis-1/4">
             <router-link class="btn btn-ghost text-xl" to="/Notes">ink goose</router-link>
         </div>

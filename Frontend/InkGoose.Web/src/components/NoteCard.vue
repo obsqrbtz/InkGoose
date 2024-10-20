@@ -32,7 +32,7 @@ const props = defineProps({
     <NoteEdit :isOpen="showModal" @update:isOpen="showModal = $event" v-on:notesUpdated="reportUpdate" :id="id"
         :title="title" :noteContent="noteContent" />
     <div
-        class="w-full h-64 flex flex-col justify-between bg-base border border-base-300 rounded-lg mb-6 py-4 px-4">
+        class="w-full h-64 flex flex-col justify-between bg-base-100  border border-base-300 rounded-lg mb-6 py-4 px-4">
         <div class="overflow-y-auto prose prose-sm">
             <h2>{{ title }}</h2>
             <div v-html="markdown.render(noteContent)" />
