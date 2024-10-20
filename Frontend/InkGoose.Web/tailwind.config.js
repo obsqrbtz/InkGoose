@@ -4,12 +4,12 @@ export default {
         "./index.html",
         "./src/**/*.{vue,js,ts,jsx,tsx}",
     ],
-    darkMode: ['selector', '[data-mode="light"]'],
+    darkMode: 'selector',
     theme: {
         extend: {},
     },
     plugins: [
         require('daisyui'),
         require('@tailwindcss/typography')
-    ],
+    ]
 }

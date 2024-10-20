@@ -32,7 +32,7 @@ const props = defineProps({
     <NoteEdit :isOpen="showModal" @update:isOpen="showModal = $event" v-on:notesUpdated="reportUpdate" :id="id"
         :title="title" :noteContent="noteContent" />
     <div
-        class="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-4 px-4">
+        class="w-full h-64 flex flex-col justify-between dark:bg-neutral-900 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-4 px-4">
         <div class="overflow-y-auto prose prose-sm">
             <h2>{{ title }}</h2>
             <div v-html="markdown.render(noteContent)" />
@@ -42,7 +42,7 @@ const props = defineProps({
                 <p class="text-sm">{{ new Date(dateCreated).toLocaleString() }}</p>
                 <div class="flex">
                     <button @click="showModal = true"
-                        class="mr-2 w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
+                        class="mr-2 w-8 h-8 rounded-full bg-neutral-900 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
                         aria-label="edit note" role="button">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="20"
                             height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
@@ -53,7 +53,7 @@ const props = defineProps({
                         </svg>
                     </button>
                     <button @click="deleteNote(id)"
-                        class="w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
+                        class="w-8 h-8 rounded-full bg-neutral-900 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
                         aria-label="edit note" role="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">

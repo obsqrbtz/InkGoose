@@ -19,7 +19,7 @@ import ThemeToggle from './ThemeToggle.vue'
             </label>
         </div>
         <div class="navbar-end basis-1/4">
-            <!--<ThemeToggle />-->
+            <ThemeToggle />
             <a class="btn btn-ghost text-md">{{ email }}</a>
         </div>
     </div>
