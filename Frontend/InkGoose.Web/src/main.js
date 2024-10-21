@@ -59,17 +59,8 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-interface ImportMetaEnv {
-  readonly VITE_API_HOST: string
-  // more env variables...
-}
-
-interface ImportMeta {
-  readonly env: ImportMetaEnv
-}
-
 const app = createApp(App)
 app.config.globalProperties.apiHost = import.meta.env.VITE_API_HOST + "/api"
-app.use(router) 
+app.use(router)
 app.mount('#app')
 

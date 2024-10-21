@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import markdownit from 'markdown-it'
 import NoteView from './NoteView.vue'
 const markdown = markdownit({
@@ -29,7 +29,7 @@ const markdown = markdownit({
     </teleport>
 </template>
 
-<script lang="ts">
+<script>
 export default {
     props: {
         isOpen: {

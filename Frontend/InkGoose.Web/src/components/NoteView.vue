@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import markdownit from 'markdown-it'
 import { defineComponent } from 'vue';
 const markdown = markdownit({
@@ -35,7 +35,7 @@ const emit = defineEmits(['titleUpdated', 'contentUpdated'])
     </div>
 </template>
 
-<script lang="ts">
+<script>
 export default defineComponent({
     props: {
         id: {
