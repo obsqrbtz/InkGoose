@@ -9,20 +9,38 @@ const markdown = markdownit({
 </script>
 <template>
     <teleport to="body">
-        <div class="fixed inset-0 overflow-y-auto bg-base-100  bg-opacity-50" v-if="isOpen">
+        <div
+            v-if="isOpen"
+            class="fixed inset-0 overflow-y-auto bg-base-100  bg-opacity-50"
+        >
             <div class="flex items-start justify-center h-4/5 mt-24 text-center">
                 <div class="bg-base-100  text-base-content border border-base-300 rounded-lg w-6/12 h-full m-4">
-                    <slot></slot>
+                    <slot />
                     <div class="flex w-full p-2">
                         <div class="flex w-full justify-start ml-2 mt-2">
-                            <button @click="createNote()" class="btn btn-sm btn-neutral">Save</button>
+                            <button
+                                class="btn btn-sm btn-neutral"
+                                @click="createNote()"
+                            >
+                                Save
+                            </button>
                         </div>
                         <div class="flex w-full justify-end">
-                            <button @click="close" class="btn btn-sm btn-circle btn-ghost">✕</button>
+                            <button
+                                class="btn btn-sm btn-circle btn-ghost"
+                                @click="close"
+                            >
+                                ✕
+                            </button>
                         </div>
                     </div>
-                    <NoteView :id="id" :title="editTitle" :noteContent="editContent" @titleUpdated="updateTitle"
-                        @contentUpdated="updateContent" />
+                    <NoteView
+                        :id="id"
+                        :title="editTitle"
+                        :note-content="editContent"
+                        @title-updated="updateTitle"
+                        @content-updated="updateContent"
+                    />
                 </div>
             </div>
         </div>
@@ -40,15 +58,15 @@ export default {
             default: false
         }
     },
+    emits: {
+        notesUpdated: null,
+        "update:isOpen": null
+    },
     data() {
         return {
             editTitle: '',
             editContent: ''
         }
-    },
-    emits: {
-        notesUpdated: null,
-        "update:isOpen": null
     },
     methods: {
         close() {

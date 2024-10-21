@@ -7,7 +7,7 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <button @click="toggleDark()">
-    <span class="ml-2">{{ isDark ? 'Dark' : 'Light' }}</span>
-  </button>
+    <button @click="toggleDark()">
+        <span class="ml-2">{{ isDark ? 'Dark' : 'Light' }}</span>
+    </button>
 </template>
