@@ -77,7 +77,7 @@ export default {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+                    "Authorization": `Bearer ${token}`
                 },
             });
             if (!checkAuth.ok) {

@@ -7,6 +7,7 @@ const markdown = markdownit({
     typographer: true
 });
 
+// eslint-disable-next-line no-unused-vars
 const props = defineProps({
     id: {
         type: String,

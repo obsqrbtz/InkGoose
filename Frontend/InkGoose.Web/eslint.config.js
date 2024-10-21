@@ -10,6 +10,7 @@ export default [
             'vue/html-indent': ['error', 4],
             'vue/singleline-html-element-content-newline': 0,
             'vue/component-name-in-template-casing': ['error', 'PascalCase'],
+            'vue/multi-word-component-names': 'off'
         }
     }
 ]

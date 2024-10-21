@@ -1,7 +1,3 @@
-<script setup>
-import ThemeToggle from './ThemeToggle.vue'
-</script>
-
 <template>
     <div class="navbar bg-base-100 -100 flex sticky top-0">
         <div class="navbar-start basis-1/4">
@@ -34,13 +30,13 @@ import ThemeToggle from './ThemeToggle.vue'
             </label>
         </div>
         <div class="navbar-end basis-1/4">
-            <!--<ThemeToggle />-->
             <a class="btn btn-ghost text-md">{{ email }}</a>
         </div>
     </div>
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
 var email;
 export default {
     created() {

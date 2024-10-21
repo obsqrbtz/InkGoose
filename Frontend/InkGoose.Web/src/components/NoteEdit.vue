@@ -1,11 +1,5 @@
 <script setup>
-import markdownit from 'markdown-it'
 import NoteView from './NoteView.vue'
-const markdown = markdownit({
-    html: true,
-    linkify: true,
-    typographer: true
-});
 </script>
 <template>
     <teleport to="body">
