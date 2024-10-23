@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 
 import NotesList from './components/NotesList.vue'
 import Navbar from './components/Navbar.vue'

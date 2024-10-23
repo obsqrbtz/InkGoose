@@ -4,7 +4,6 @@ export default {
         "./index.html",
         "./src/**/*.{vue,js,ts,jsx,tsx}",
     ],
-    darkMode: ['selector', '[data-mode="light"]'],
     theme: {
         extend: {},
     },
@@ -12,4 +11,7 @@ export default {
         require('daisyui'),
         require('@tailwindcss/typography')
     ],
+    daisyui: {
+        themes: ['cmyk']
+      },
 }

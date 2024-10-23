@@ -1,7 +1,7 @@
 <template>
     <div class="relative flex flex-col items-center justify-center h-screen overflow-hidden">
-        <div class="w-full p-6 bg-white border-t-4 border-gray-600 rounded-md shadow-md border-top lg:max-w-lg">
-            <h1 class="text-3xl font-semibold text-center text-gray-700">
+        <div class="w-full p-6 bg-base-100  text-base-content border border-base-300 rounded-md border-top lg:max-w-lg">
+            <h1 class="text-3xl font-semibold text-center text-content">
                 ink goose
             </h1>
             <form class="space-y-4">
@@ -9,18 +9,37 @@
                     <label class="label">
                         <span class="text-base label-text">Email</span>
                     </label>
-                    <input ref="email" type="text" placeholder="Email Address" class="w-full input input-bordered" />
+                    <input
+                        ref="email"
+                        type="text"
+                        placeholder="Email Address"
+                        class="w-full input input-bordered"
+                    >
                 </div>
                 <div>
                     <label class="label">
                         <span class="text-base label-text">Password</span>
                     </label>
-                    <input ref="password" type="password" placeholder="Enter Password"
-                        class="w-full input input-bordered" />
+                    <input
+                        ref="password"
+                        type="password"
+                        placeholder="Enter Password"
+                        class="w-full input input-bordered"
+                    >
                 </div>
                 <div class="flex justify-center">
-                    <button @click.prevent="login()" class="btn btn-neutral mr-2">Login</button>
-                    <button @click.prevent="toSignup()" class="btn btn-neutral">Signup</button>
+                    <button
+                        class="btn btn-neutral mr-2"
+                        @click.prevent="login()"
+                    >
+                        Login
+                    </button>
+                    <button
+                        class="btn btn-neutral"
+                        @click.prevent="toSignup()"
+                    >
+                        Signup
+                    </button>
                 </div>
             </form>
         </div>
@@ -29,15 +48,15 @@
 
 <script>
 export default {
-    created() {
-        if (window.localStorage.getItem("accessToken")) {
-            this.$router.push(this.$route.query.redirect || '/Notes')
-        }
-    },
     data() {
         return {
             data: null,
         };
+    },
+    created() {
+        if (window.localStorage.getItem("accessToken")) {
+            this.$router.push(this.$route.query.redirect || '/Notes')
+        }
     },
     methods: {
         async login() {
@@ -58,10 +77,10 @@ export default {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+                    "Authorization": `Bearer ${token}`
                 },
             });
-            if (!response.ok) {
+            if (!checkAuth.ok) {
                 alert("Failed to authenticate. Please try again.");
                 return;
             }

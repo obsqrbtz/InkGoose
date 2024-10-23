@@ -1,7 +1,7 @@
 <template>
     <div class="relative flex flex-col items-center justify-center h-screen overflow-hidden">
-        <div class="w-full p-6 bg-white border-t-4 border-gray-600 rounded-md shadow-md border-top lg:max-w-lg">
-            <h1 class="text-3xl font-semibold text-center text-gray-700">
+        <div class="w-full p-6 bg-base-100  text-base-content border border-base-300 rounded-md3 lg:max-w-lg">
+            <h1 class="text-3xl font-semibold text-center text-content">
                 ink goose
             </h1>
             <form class="space-y-4">
@@ -9,40 +9,59 @@
                     <label class="label">
                         <span class="text-base label-text">Email</span>
                     </label>
-                    <input ref="email" type="text" placeholder="Email Address" class="w-full input input-bordered" />
+                    <input
+                        ref="email"
+                        type="text"
+                        placeholder="Email Address"
+                        class="w-full input input-bordered"
+                    >
                 </div>
                 <div>
                     <label class="label">
                         <span class="text-base label-text">User name</span>
                     </label>
-                    <input ref="username" type="text" placeholder="User name" class="w-full input input-bordered" />
+                    <input
+                        ref="username"
+                        type="text"
+                        placeholder="User name"
+                        class="w-full input input-bordered"
+                    >
                 </div>
                 <div>
                     <label class="label">
                         <span class="text-base label-text">Password</span>
                     </label>
-                    <input ref="password" type="password" placeholder="Enter Password"
-                        class="w-full input input-bordered" />
+                    <input
+                        ref="password"
+                        type="password"
+                        placeholder="Enter Password"
+                        class="w-full input input-bordered"
+                    >
                 </div>
                 <div>
-                    <button @click.prevent="signin()" class="btn btn-block btn-neutral">Signup</button>
+                    <button
+                        class="btn btn-block btn-neutral"
+                        @click.prevent="signin()"
+                    >
+                        Signup
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 </template>
 
-<script lang="ts">
+<script>
 export default {
-    created() {
-        if (window.localStorage.getItem("accessToken")) {
-            this.$router.push(this.$route.query.redirect || '/Notes')
-        }
-    },
     data() {
         return {
             data: null,
         };
+    },
+    created() {
+        if (window.localStorage.getItem("accessToken")) {
+            this.$router.push(this.$route.query.redirect || '/Notes')
+        }
     },
     methods: {
         async signin() {

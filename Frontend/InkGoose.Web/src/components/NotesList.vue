@@ -1,46 +1,72 @@
-<script setup lang="ts">
+<script setup>
 import NoteCard from './NoteCard.vue'
 import NoteCreate from './NoteCreate.vue'
 
 import { defineComponent } from 'vue';
 
-type Note = {
-    id: string;
-    title: string;
-    archived: boolean;
-    content: string;
-    dateCreated: Date;
-    dateModified: Date;
-};
-
 </script>
 
 <template>
-    <NoteCreate :isOpen="showModal" @update:isOpen="showModal = $event" v-on:notesUpdated="fetchNotes" />
+    <NoteCreate
+        :is-open="showModal"
+        @update:is-open="showModal = $event"
+        @notes-updated="fetchNotes"
+    />
     <div class="flex">
         <div class="basis-1/8">
-            <button @click="showModal = true"
-                class="sticky top-12 ml-4 w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
+            <button
+                class="sticky top-12 ml-4 w-8 h-8 rounded-full bg-neutral text-neutral-content  flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
+                @click="showModal = true"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <line
+                        x1="12"
+                        y1="5"
+                        x2="12"
+                        y2="19"
+                    />
+                    <line
+                        x1="5"
+                        y1="12"
+                        x2="19"
+                        y2="12"
+                    />
                 </svg>
             </button>
         </div>
-        <div v-if="data" class="container px-6">
+        <div
+            v-if="data"
+            class="container px-6"
+        >
             <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <NoteCard v-for="item in data as Note[]" v-on:notesUpdated="fetchNotes" :id="item.id"
-                    :title="item.title" :noteContent="item.content" :dateCreated="item.dateCreated" />
+                <NoteCard
+                    v-for="item in data"
+                    :id="item.id"
+                    :title="item.title"
+                    :note-content="item.content"
+                    :date-created="item.dateCreated"
+                    @notes-updated="fetchNotes"
+                />
             </div>
         </div>
     </div>
 </template>
 
-<script lang="ts">
+<script>
 export default defineComponent({
-    created() {
-        this.fetchNotes();
+    components: {
+        NoteCard,
+        NoteCreate
     },
     data() {
         return {
@@ -48,9 +74,8 @@ export default defineComponent({
             showModal: false
         };
     },
-    components: {
-        NoteCard,
-        NoteCreate
+    created() {
+        this.fetchNotes();
     },
     methods: {
         async fetchNotes() {
