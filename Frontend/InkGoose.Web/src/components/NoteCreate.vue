@@ -13,7 +13,7 @@ import NoteView from './NoteView.vue'
                     <div class="flex w-full p-2">
                         <div class="flex w-full justify-start ml-2 mt-2">
                             <button
-                                class="btn btn-sm btn-neutral"
+                                class="btn btn-sm"
                                 @click="createNote()"
                             >
                                 Save
@@ -21,7 +21,7 @@ import NoteView from './NoteView.vue'
                         </div>
                         <div class="flex w-full justify-end">
                             <button
-                                class="btn btn-sm btn-circle btn-ghost"
+                                class="btn btn-sm btn-circle"
                                 @click="close"
                             >
                                 ✕

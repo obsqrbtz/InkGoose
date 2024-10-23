@@ -15,7 +15,7 @@ import { defineComponent } from 'vue';
     <div class="flex">
         <div class="basis-1/8">
             <button
-                class="sticky top-12 ml-4 w-8 h-8 rounded-full bg-neutral text-neutral-content  flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
+                class="sticky top-12 ml-4 w-8 h-8 rounded-full flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
                 @click="showModal = true"
             >
                 <svg

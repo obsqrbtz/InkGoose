@@ -50,7 +50,7 @@ const props = defineProps({
                 <p class="text-sm">{{ new Date(dateCreated).toLocaleString() }}</p>
                 <div class="flex">
                     <button
-                        class="mr-2 w-8 h-8 rounded-full bg-neutral text-neutral-content flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
+                        class="mr-2 w-8 h-8 rounded-full flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
                         aria-label="edit note"
                         role="button"
                         @click="showModal = true"
@@ -81,7 +81,7 @@ const props = defineProps({
                         </svg>
                     </button>
                     <button
-                        class="w-8 h-8 rounded-full bg-neutral text-neutral-content flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
+                        class="w-8 h-8 rounded-full flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
                         aria-label="edit note"
                         role="button"
                         @click="deleteNote(id)"

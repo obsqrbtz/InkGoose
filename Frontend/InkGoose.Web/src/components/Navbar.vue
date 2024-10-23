@@ -9,7 +9,7 @@
             </router-link>
         </div>
         <div class="navbar-center basis-1/2">
-            <label class="input input-bordered flex items-center gap-2 w-full">
+            <!-- <label class="input input-bordered flex items-center gap-2 w-full">
                 <input
                     type="text"
                     class="grow"
@@ -27,7 +27,7 @@
                         clip-rule="evenodd"
                     />
                 </svg>
-            </label>
+            </label> -->
         </div>
         <div class="navbar-end basis-1/4">
             <a class="btn btn-ghost text-md">{{ email }}</a>
