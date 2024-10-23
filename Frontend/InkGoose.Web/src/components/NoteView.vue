@@ -35,7 +35,7 @@ const emit = defineEmits(['titleUpdated', 'contentUpdated'])
             >
             <textarea
                 v-model="editContent"
-                class="pl-6 bg-base-100 resize-none leading-snug font-mono textarea textarea-ghost textarea-md whitespace-break-spaces w-full focus:border-none focus:outline-none"
+                class="pl-6 h-full bg-base-100 resize-none leading-snug font-mono textarea textarea-ghost textarea-md whitespace-break-spaces w-full focus:border-none focus:outline-none"
                 placeholder="Content"
                 @input="$emit('contentUpdated', editContent)"
             />
