@@ -31,7 +31,7 @@ import NoteView from './NoteView.vue'
                             class="btn btn-sm ml-1"
                             @click="close"
                         >
-                            Discard
+                            Close
                         </button>
                     </div>
                 </div>
