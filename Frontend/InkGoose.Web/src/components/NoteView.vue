@@ -7,6 +7,7 @@ const markdown = markdownit({
     linkify: true,
     typographer: true
 });
+// eslint-disable-next-line no-unused-vars
 const emit = defineEmits(['titleUpdated', 'contentUpdated'])
 </script>
 <template>

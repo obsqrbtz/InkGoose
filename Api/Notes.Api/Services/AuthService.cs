@@ -12,7 +12,7 @@ namespace InkGoose.Api.Services
         public string GenerateToken(User user)
         {
             var handler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(AuthSettings.PrivateKey);
+            byte[] key = Encoding.ASCII.GetBytes(AuthSettings.PrivateKey);
             var credentials = new SigningCredentials(
                 new SymmetricSecurityKey(key),
                 SecurityAlgorithms.HmacSha256Signature);
@@ -22,7 +22,7 @@ namespace InkGoose.Api.Services
                 Expires = DateTime.UtcNow.AddMinutes(15),
                 SigningCredentials = credentials
             };
-            var token = handler.CreateToken(tokenDescriptor);
+            SecurityToken? token = handler.CreateToken(tokenDescriptor);
             return handler.WriteToken(token);
         }
         private static ClaimsIdentity GenerateClaims(User user)
@@ -33,12 +33,12 @@ namespace InkGoose.Api.Services
         }
         public static string? GetEmail(ClaimsPrincipal user)
         {
-            var email = user.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
-            if (email is null)
+            Claim? email = user.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
+            return email switch
             {
-                return null;
-            }
-            return email.Value;
+                null => null,
+                _ => email.Value
+            };
         }
     }
 }

@@ -52,6 +52,7 @@ import { defineComponent } from 'vue';
                 <NoteCard
                     v-for="item in data"
                     :id="item.id"
+                    :key="item.id"
                     :title="item.title"
                     :note-content="item.content"
                     :date-created="item.dateCreated"
