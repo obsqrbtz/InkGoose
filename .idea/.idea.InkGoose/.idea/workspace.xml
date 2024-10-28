@@ -11,21 +11,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a749c82-fc27-4a09-80bb-a1ecf2f32967" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Api/Notes.Api/Services/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Notes.Api/Services/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/eslint.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.InkGoose/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InkGoose/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Api/Notes.Api/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Notes.Api/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/Hero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/Hero.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/NoteEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/NoteEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/NotesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/NotesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:obsqrbtz/inkgoose.git",
+    "accountId": "3e6e01fd-b72c-4ee1-aaa1-b2fcb1d6b0fb"
+  }
 }]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///home/dan/src/inkgoose/Api/Notes.Api/Properties/launchSettings.json" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2nvKR7FCvhhA2a24eLae9s91EYt" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -33,9 +50,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Launch Settings Profile.Api: http.executor": "Run",
+    "Docker.InkGooseFull.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "/home/dan/src/inkgoose/docker-compose.yml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -44,7 +64,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Api: IIS Express">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Api: http">
     <configuration name="Api: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Api/Notes.Api/Api.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -90,11 +110,27 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="InkGooseFull" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envFilePath" value="" />
+          <option name="services">
+            <list>
+              <option value="inkgoose-db" />
+              <option value="inkgoose-api" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
+    </configuration>
     <configuration name="Notes.Api/Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
       <deployment type="dockerfile">
         <settings>
           <option name="containerName" value="api" />
-          <option name="contextFolderPath" value="C:\Users\dada.daniel\source\repos\inkgoose" />
+          <option name="contextFolderPath" value="C:/Users/dada.daniel/source/repos/inkgoose" />
           <option name="publishAllPorts" value="true" />
           <option name="sourceFilePath" value="Api/Notes.Api/Dockerfile" />
         </settings>
@@ -103,9 +139,19 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile" />
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.Api: http" />
+      <item itemvalue=".NET Launch Settings Profile.Api: https" />
+      <item itemvalue=".NET Launch Settings Profile.Api: IIS Express" />
+      <item itemvalue="Docker.Notes.Api/Dockerfile" />
+      <item itemvalue="Docker.InkGooseFull" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -116,6 +162,9 @@
       <option name="presentableId" value="Default" />
       <updated>1729848103583</updated>
       <workItem from="1729848109986" duration="1133000" />
+      <workItem from="1730129016645" duration="989000" />
+      <workItem from="1730130040295" duration="587000" />
+      <workItem from="1730130723807" duration="4112000" />
     </task>
     <servers />
   </component>
@@ -125,5 +174,24 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Api/Notes.Api/Controllers/NotesController.cs</url>
+          <line>26</line>
+          <properties documentPath="$PROJECT_DIR$/Api/Notes.Api/Controllers/NotesController.cs" containingFunctionPresentation="Method 'GetNotesList'">
+            <startOffsets>
+              <option value="832" />
+            </startOffsets>
+            <endOffsets>
+              <option value="849" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
