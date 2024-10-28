@@ -30,13 +30,8 @@ import ThemeToggle from './ThemeToggle.vue';
             </label> -->
         </div>
         <div class="navbar-end basis-1/4">
-            <div class="dropdown">
-                <div tabindex="0" role="button" class="btn btn-ghost m-1"> {{ email }} </div>
-                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                    <li><a>Log out</a></li>
-                </ul>
-            </div>
-            <ThemeToggle class="mr-2" />
+            <button class="btn btn-ghost" @click="logout">Logout</button>
+            <ThemeToggle />
         </div>
     </div>
 </template>
@@ -47,6 +42,12 @@ var email;
 export default {
     created() {
         email = window.localStorage.getItem("email");
+    },
+    methods: {
+        logout() {
+            window.localStorage.removeItem("accessToken");
+            this.$router.push(this.$route.query.redirect || '/')
+        }
     }
 }; 
 </script>
