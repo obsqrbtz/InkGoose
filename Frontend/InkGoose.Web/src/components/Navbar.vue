@@ -31,7 +31,7 @@ import ThemeToggle from './ThemeToggle.vue';
         </div>
         <div class="navbar-end basis-1/4">
             <button class="btn btn-ghost" @click="logout">Logout</button>
-            <ThemeToggle />
+            <ThemeToggle class="mr-2" />
         </div>
     </div>
 </template>
