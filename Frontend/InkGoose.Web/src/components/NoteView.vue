@@ -30,6 +30,7 @@ const emit = defineEmits(['titleUpdated', 'contentUpdated'])
                 <p class="prose prose-md text-left m-2" v-html="markdown.render(editContent)" />
             </div>
         </div>
+        <span class="tab" />
     </div>
 </template>
 
