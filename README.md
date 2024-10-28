@@ -2,7 +2,7 @@
 
 **Yet another note taking app**
 
-> [WIP]  
+> [!NOTE]  
 > Project is in early development and not intended for regular use.
 
 ## Backend - .NET 9
