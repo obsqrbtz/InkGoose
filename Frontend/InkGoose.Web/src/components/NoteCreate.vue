@@ -3,38 +3,21 @@ import NoteView from './NoteView.vue'
 </script>
 <template>
     <teleport to="body">
-        <div
-            v-if="isOpen"
-            class="fixed inset-0 overflow-y-auto bg-base-100  bg-opacity-50"
-        >
-            <div class="flex items-start justify-center h-4/5 mt-24 text-center">
-                <div class="bg-base-100  text-base-content border border-base-300 rounded-lg w-6/12 h-full m-4">
+        <div v-if="isOpen" class="fixed inset-0 overflow-y-auto bg-base-100  bg-opacity-50">
+            <div class="flex justify-center">
+                <div
+                    class="flex flex-col bg-base-100 text-base-content border border-base-300 rounded-lg w-full lg:w-6/12 m-4">
                     <slot />
-                    <div class="flex w-full p-2">
-                        <div class="flex w-full justify-start ml-2 mt-2">
-                            <button
-                                class="btn btn-sm"
-                                @click="createNote()"
-                            >
-                                Save
-                            </button>
-                        </div>
-                        <div class="flex w-full justify-end">
-                            <button
-                                class="btn btn-sm btn-circle"
-                                @click="close"
-                            >
-                                ✕
-                            </button>
-                        </div>
+                    <NoteView :id="id" :title="editTitle" :note-content="editContent" @title-updated="updateTitle"
+                        class="" @content-updated="updateContent" />
+                    <div class="w-full justify-items-start p-2 ml-2">
+                        <button class="btn btn-sm" @click="createNote()">
+                            Save
+                        </button>
+                        <button class="btn btn-sm ml-1" @click="close">
+                            Close
+                        </button>
                     </div>
-                    <NoteView
-                        :id="id"
-                        :title="editTitle"
-                        :note-content="editContent"
-                        @title-updated="updateTitle"
-                        @content-updated="updateContent"
-                    />
                 </div>
             </div>
         </div>

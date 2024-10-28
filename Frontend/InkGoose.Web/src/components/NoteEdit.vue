@@ -3,34 +3,19 @@ import NoteView from './NoteView.vue'
 </script>
 <template>
     <teleport to="body">
-        <div
-            v-if="isOpen"
-            class="fixed inset-0 overflow-y-auto bg-base-100 bg-opacity-50"
-        >
-            <div class="flex justify-center h-4/5 mt-24">
+        <div v-if="isOpen" class="fixed inset-0 overflow-y-auto bg-base-100 bg-opacity-50">
+            <div class="flex justify-center m-4">
                 <div
-                    class="flex flex-col bg-base-100 text-base-content border border-base-300 rounded-lg w-full lg:w-6/12 m-4"
-                >
+                    class="flex flex-col bg-base-100 text-base-content border border-base-300 rounded-lg w-full lg:w-6/12 m-4">
                     <slot />
-                    <NoteView
-                        :id="id"
-                        :title="title"
-                        :note-content="noteContent"
-                        class="grow"
-                        @title-updated="updateTitle"
-                        @content-updated="updateContent"
-                    />
+                    <NoteView :id="id" :title="title" :note-content="noteContent"
+                        class="" @title-updated="updateTitle"
+                        @content-updated="updateContent" />
                     <div class="w-full justify-items-start p-2 ml-2">
-                        <button
-                            class="btn btn-sm"
-                            @click="saveNote()"
-                        >
+                        <button class="btn btn-sm" @click="saveNote()">
                             Save
                         </button>
-                        <button
-                            class="btn btn-sm ml-1"
-                            @click="close"
-                        >
+                        <button class="btn btn-sm ml-1" @click="close">
                             Close
                         </button>
                     </div>

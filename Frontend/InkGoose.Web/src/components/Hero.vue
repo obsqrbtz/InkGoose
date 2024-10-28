@@ -11,7 +11,7 @@
                     Open source note taking app with markdown support.
                 </p>
                 <button
-                    class="btn btn-neutral"
+                    class="btn"
                     @click="toLogin"
                 >
                     Get Started

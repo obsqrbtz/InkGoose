@@ -7,7 +7,7 @@
             <form class="space-y-4">
                 <div>
                     <label class="label">
-                        <span class="text-base label-text">Email</span>
+                        <span class="textb-base label-text">Email</span>
                     </label>
                     <input
                         ref="email"
@@ -29,13 +29,13 @@
                 </div>
                 <div class="flex justify-center">
                     <button
-                        class="btn btn-neutral mr-2"
+                        class="btn mr-2"
                         @click.prevent="login()"
                     >
                         Login
                     </button>
                     <button
-                        class="btn btn-neutral"
+                        class="btn"
                         @click.prevent="toSignup()"
                     >
                         Signup

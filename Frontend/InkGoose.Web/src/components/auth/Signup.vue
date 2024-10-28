@@ -40,7 +40,7 @@
                 </div>
                 <div>
                     <button
-                        class="btn btn-block btn-neutral"
+                        class="btn btn-block"
                         @click.prevent="signin()"
                     >
                         Signup
