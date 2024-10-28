@@ -12,7 +12,7 @@ import { defineComponent } from 'vue';
         @update:is-open="showModal = $event"
         @notes-updated="fetchNotes"
     />
-    <div class="flex ml-12">
+    <div class="flex">
         <div class="basis-1/8">
             <button
                 class="sticky top-12 ml-4 w-8 h-8 rounded-full flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
