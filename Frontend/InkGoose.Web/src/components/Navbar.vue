@@ -1,10 +1,10 @@
+<script setup>
+import ThemeToggle from './ThemeToggle.vue';
+</script>
 <template>
     <div class="navbar bg-base-100 -100 flex sticky top-0">
         <div class="navbar-start basis-1/4">
-            <router-link
-                class="btn btn-ghost text-xl"
-                to="/Notes"
-            >
+            <router-link class="btn btn-ghost text-xl" to="/Notes">
                 ink goose
             </router-link>
         </div>
@@ -30,7 +30,13 @@
             </label> -->
         </div>
         <div class="navbar-end basis-1/4">
-            <a class="btn btn-ghost text-md">{{ email }}</a>
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost m-1"> {{ email }} </div>
+                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                    <li><a>Log out</a></li>
+                </ul>
+            </div>
+            <ThemeToggle class="mr-2" />
         </div>
     </div>
 </template>
@@ -42,4 +48,5 @@ export default {
     created() {
         email = window.localStorage.getItem("email");
     }
-}; </script>
+}; 
+</script>
