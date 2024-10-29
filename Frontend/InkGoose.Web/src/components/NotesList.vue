@@ -53,6 +53,7 @@ import { defineComponent } from 'vue';
                     v-for="item in data"
                     :id="item.id"
                     :key="item.id"
+                    :archived="item.archived"
                     :title="item.title"
                     :note-content="item.content"
                     :date-created="item.dateCreated"

@@ -29,6 +29,12 @@ import NoteView from './NoteView.vue'
                         </button>
                         <button
                             class="btn btn-sm ml-1"
+                            @click="updateArcStatus"
+                        >
+                            {{ archivedStr }}
+                        </button>
+                        <button
+                            class="btn btn-sm ml-1"
                             @click="close"
                         >
                             Close
@@ -51,6 +57,10 @@ export default {
             type: String,
             required: true
         },
+        archived: {
+            type: Boolean,
+            default: false
+        },
         title: {
             type: String,
             required: true
@@ -67,7 +77,9 @@ export default {
     data() {
         return {
             editTitle: this.title,
-            editContent: this.noteContent
+            editContent: this.noteContent,
+            editArchived: this.edit,
+            archivedStr: this.archived ? "Unarchive" : "Archive"
         }
     },
     methods: {
@@ -80,11 +92,16 @@ export default {
         updateContent(newContent) {
             this.editContent = newContent;
         },
+        updateArcStatus() {
+            this.editArchived = !this.editArchived;
+            this.archivedStr = this.editArchived ? "Unarchive" : "Archive";
+        },
         async saveNote() {
             var params = {
                 id: this.id,
                 title: this.editTitle,
-                content: this.editContent
+                content: this.editContent,
+                archived: this.editArchived
             };
             var reqBody = JSON.stringify(params);
             const response = await fetch(`${this.apiHost}/Notes/UpdateNote`, {
