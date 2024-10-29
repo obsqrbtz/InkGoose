@@ -53,9 +53,9 @@ const props = defineProps({
         <div>
             <div class=" flex items-center justify-between text-base-content">
                 <p class="text-sm">{{ new Date(dateCreated).toLocaleString() }}</p>
-                <div class="flex">
+                <div class="flex mb-2 mt-2">
                     <button
-                        class="btn btn-sm btn-circle"
+                        class="btn btn-sm btn-circle mr-2"
                         aria-label="edit note"
                         role="button"
                         @click="showModal = true"

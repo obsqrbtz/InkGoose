@@ -29,7 +29,7 @@ import NoteView from './NoteView.vue'
                         </button>
                         <button
                             class="btn btn-sm ml-1"
-                            @click="updateArcStatus"
+                            @click="updateArcStatus()"
                         >
                             {{ archivedStr }}
                         </button>
@@ -78,7 +78,7 @@ export default {
         return {
             editTitle: this.title,
             editContent: this.noteContent,
-            editArchived: this.edit,
+            editArchived: this.archived,
             archivedStr: this.archived ? "Unarchive" : "Archive"
         }
     },
@@ -91,10 +91,6 @@ export default {
         },
         updateContent(newContent) {
             this.editContent = newContent;
-        },
-        updateArcStatus() {
-            this.editArchived = !this.editArchived;
-            this.archivedStr = this.editArchived ? "Unarchive" : "Archive";
         },
         async saveNote() {
             var params = {
@@ -119,6 +115,11 @@ export default {
             }
             this.$emit('notesUpdated');
             this.$emit('update:isOpen', false);
+        },
+        async updateArcStatus() {
+            this.editArchived = !this.editArchived;
+            this.archivedStr = this.editArchived ? "Unarchive" : "Archive";
+            await this.saveNote();
         },
     }
 };
