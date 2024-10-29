@@ -1,9 +1,20 @@
+<script setup>
+import ThemeToggle from '../ThemeToggle.vue';
+import Footer from '../Footer.vue'
+</script>
 <template>
     <div class="relative flex flex-col items-center justify-center h-screen overflow-hidden">
-        <div class="w-full p-6 bg-base-100  text-base-content border border-base-300 rounded-md border-top lg:max-w-lg">
-            <h1 class="text-3xl font-semibold text-center text-content">
-                ink goose
-            </h1>
+        <ThemeToggle class="absolute top-4 right-4" />
+        <div
+            class="mt-auto mb-auto w-full p-6 bg-base-100  text-base-content border border-base-300 rounded-md border-top lg:max-w-lg"
+        >
+            <router-link
+                to="/"
+            >
+                <h1 class="text-3xl font-semibold text-center text-content">
+                    ink goose
+                </h1>
+            </router-link>
             <form class="space-y-4">
                 <div>
                     <label class="label">
@@ -43,6 +54,7 @@
                 </div>
             </form>
         </div>
+        <Footer />
     </div>
 </template>
 

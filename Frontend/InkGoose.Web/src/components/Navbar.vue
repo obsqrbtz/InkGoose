@@ -1,17 +1,19 @@
 <script setup>
 import ThemeToggle from './ThemeToggle.vue';
+
+var accessToken = localStorage.getItem("accessToken");
 </script>
 <template>
     <div class="navbar bg-base-100 -100 flex sticky top-0">
         <div class="navbar-start basis-1/4">
-            <img
-                src="../assets/logo.svg"
-                class="w-12"
-            >
             <router-link
                 class="btn btn-ghost text-xl"
-                to="/Notes"
+                to="/"
             >
+                <img
+                    src="../assets/logo.svg"
+                    class="w-12"
+                >
                 ink goose
             </router-link>
         </div>
@@ -38,10 +40,11 @@ import ThemeToggle from './ThemeToggle.vue';
         </div>
         <div class="navbar-end basis-1/4">
             <button
+                v-if="accessToken"
                 class="btn btn-ghost"
                 @click="logout"
             >
-                Logout
+                log out
             </button>
             <ThemeToggle class="mr-2" />
         </div>
