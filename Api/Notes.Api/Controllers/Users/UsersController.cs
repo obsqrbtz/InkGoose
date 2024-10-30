@@ -1,14 +1,9 @@
-﻿using InkGoose.Api.Controllers;
-using InkGoose.Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using InkGoose.Api.Database;
+﻿using InkGoose.Api.Database;
 using InkGoose.Api.Services;
+using InkGoose.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication;
-using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InkGoose.Api.Controllers.Users
 {

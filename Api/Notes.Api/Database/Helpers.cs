@@ -14,14 +14,12 @@ namespace InkGoose.Api.Database
         }
         public static IEnumerable<Note> GetNotes(DatabaseContext db, Guid userId)
         {
-            List<Note> notes = new();
-            notes = db.Notes.OrderByDescending(x => x.DateCreated).ToList<Note>().FindAll(y => y.UserID == userId);
+            List<Note> notes = db.Notes.OrderByDescending(x => x.DateCreated).ToList<Note>().FindAll(y => y.UserID == userId);
             return notes;
         }
         public static Note GetLast(DatabaseContext db, Guid userId)
         {
-            Note? note;
-            note = db.Notes.ToList().FindAll(x => x.UserID == userId).MaxBy(x => x.DateCreated);
+            Note? note = db.Notes.ToList().FindAll(x => x.UserID == userId).MaxBy(x => x.DateCreated);
             if (note is null)
             {
                 return new Note();
@@ -40,8 +38,7 @@ namespace InkGoose.Api.Database
         }
         public static Note GetNote(Guid id, DatabaseContext db)
         {
-            Note? note;
-            note = db.Find<Note>(id);
+            var note = db.Find<Note>(id);
             if (note is null)
             {
                 return new Note();
@@ -55,8 +52,7 @@ namespace InkGoose.Api.Database
         }
         public static IEnumerable<User> GetUsers(DatabaseContext db)
         {
-            List<User> users = new();
-            users = db.Users.ToList<User>();
+            List<User> users = db.Users.ToList<User>();
             return users;
         }
         public static void DeleteUser(Guid id, DatabaseContext db)
@@ -70,8 +66,7 @@ namespace InkGoose.Api.Database
         }
         public static User GetUser(Guid id, DatabaseContext db)
         {
-            User? user;
-            user = db.Find<User>(id);
+            var user = db.Find<User>(id);
             if (user is null)
             {
                 return new User();
@@ -81,10 +76,10 @@ namespace InkGoose.Api.Database
         public static User? GetUser(string email, DatabaseContext db)
         {
             // TODO: check for default values
-            var user = db.Users.FirstOrDefault(x => x.Email == email);
+            User? user = db.Users.FirstOrDefault(x => x.Email == email);
             if (user is null)
             {
-                return null;
+                return new User();
             }
             return user;
         }

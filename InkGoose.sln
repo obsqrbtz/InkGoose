@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Notes.Api\Api.cs
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E3B68D79-44AC-4F8E-A45F-6E9CC17811F6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkGoose.Application", "Core\InkGoose.Application\InkGoose.Application.csproj", "{57953AED-DF09-464B-B8D5-F9FFCD2FAD92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Core\Application\Application.csproj", "{57953AED-DF09-464B-B8D5-F9FFCD2FAD92}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkGoose.Domain", "Core\InkGoose.Domain\InkGoose.Domain.csproj", "{09039F99-D763-4390-87FD-691BCEB8FAED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Core\Domain\Domain.csproj", "{09039F99-D763-4390-87FD-691BCEB8FAED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
