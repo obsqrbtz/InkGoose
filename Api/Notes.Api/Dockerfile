@@ -10,7 +10,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Api/Notes.Api/Api.csproj", "Api/Notes.Api/"]
-COPY ["Core/InkGoose.Domain/InkGoose.Domain.csproj", "Core/InkGoose.Domain/"]
+COPY ["Core/Domain/Domain.csproj", "Core/Domain/"]
 RUN dotnet restore "./Api/Notes.Api/Api.csproj"
 COPY . .
 WORKDIR "/src/Api/Notes.Api"
