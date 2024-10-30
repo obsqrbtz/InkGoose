@@ -37,14 +37,43 @@ import { defineComponent } from 'vue';
             v-if="notes && !showArchived"
             class="container px-6"
         >
+            <div
+                v-if="notesPinned.length > 0" 
+                class="text-2xl mb-2"
+            >
+                Pinned
+            </div>
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <NoteCard
+                    v-for="item in notesPinned"
+                    :id="item.id"
+                    :key="item.id"
+                    :archived="item.archived"
+                    :pinned="item.pinned"
+                    :color="item.color"
+                    :title="item.title"
+                    :note-content="item.content"
+                    :tag="item.tag"
+                    :date-created="item.dateCreated"
+                    @notes-updated="fetchNotes"
+                />
+            </div>
+            <div
+                class="text-2xl mb-2"
+            >
+                All
+            </div>
             <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <NoteCard
                     v-for="item in notes"
                     :id="item.id"
                     :key="item.id"
                     :archived="item.archived"
+                    :pinned="item.pinned"
+                    :color="item.color"
                     :title="item.title"
                     :note-content="item.content"
+                    :tag="item.tag"
                     :date-created="item.dateCreated"
                     @notes-updated="fetchNotes"
                 />
@@ -54,6 +83,11 @@ import { defineComponent } from 'vue';
             v-if="notesArchived && showArchived"
             class="container px-6"
         >
+            <div
+                class="text-2xl mb-2"
+            >
+                Archive
+            </div>
             <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <NoteCard
                     v-for="item in notesArchived"
@@ -81,6 +115,7 @@ export default defineComponent({
             data: null,
             notes: null,
             notesArchived: null,
+            notesPinned: null,
             showModal: false,
             showArchived: false,
         };
@@ -104,10 +139,13 @@ export default defineComponent({
             }
             this.data = await response.json();
             this.notes = this.data.filter(function (item) {
-                return item.archived === false;
+                return item.archived === false && item.pinned === false;
             });
             this.notesArchived = this.data.filter(function (item) {
                 return item.archived === true;
+            });
+            this.notesPinned = this.data.filter(function (item) {
+                return item.pinned === true;
             });
         },
         async createNote() {

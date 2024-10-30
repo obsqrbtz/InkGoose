@@ -17,6 +17,10 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
+    pinned:{
+        type: Boolean,
+        default: false
+    },
     title: {
         type: String,
         required: true
@@ -85,11 +89,12 @@ const props = defineProps({
                             />
                         </svg>
                     </button>
-                    <!-- <button
-                        class="btn btn-sm btn-circle"
-                        aria-label="archive toggle"
+                    <button
+                        v-if="editPinned"
+                        class="btn btn-sm btn-circle btn-active mr-2"
+                        aria-label="pin"
                         role="button"
-                        @click="toggleArchive()"
+                        @click="togglePinned()"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -102,12 +107,30 @@ const props = defineProps({
                             stroke-linecap="round"
                             stroke-linejoin="round"
                         >
-                            <path d="M21.5 12H16c-.7 2-2 3-4 3s-3.3-1-4-3H2.5" />
-                            <path
-                                d="M5.5 5.1L2 12v6c0 1.1.9 2 2 2h16a2 2 0 002-2v-6l-3.4-6.9A2 2 0 0016.8 4H7.2a2 2 0 00-1.8 1.1z"
-                            />
+                            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
                         </svg>
-                    </button> -->
+                    </button>
+                    <button
+                        v-if="!editPinned"
+                        class="btn btn-sm btn-circle mr-2"
+                        aria-label="pin"
+                        role="button"
+                        @click="togglePinned()"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+                        </svg>
+                    </button>
                     <button
                         class="btn btn-sm btn-circle"
                         aria-label="delete note"
@@ -159,7 +182,8 @@ export default {
     data() {
         return {
             showModal: false,
-            editArchived: this.archived
+            editArchived: this.archived,
+            editPinned: this.pinned
         };
     },
     methods: {
@@ -177,6 +201,32 @@ export default {
                 return;
             }
             this.$emit('notesUpdated');
+        },
+        async togglePinned(){
+            var params = {
+                id: this.id,
+                title: this.title,
+                content: this.content,
+                tag: this.tag,
+                color: this.color,
+                archived: this.archive,
+                pinned: !this.pinned
+            };
+            var reqBody = JSON.stringify(params);
+            const response = await fetch(`${this.apiHost}/Notes/UpdateNote`, {
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+                },
+                body: reqBody
+            });
+            if (response.status === 401) {
+                window.localStorage.removeItem("accessToken");
+                this.$router.push(this.$route.query.redirect || '/Login')
+                return;
+            }
+            this.$emit('notesUpdated');;
         },
         async toggleArchive() {
             var params = {
