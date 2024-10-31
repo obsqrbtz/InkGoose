@@ -96,6 +96,19 @@ export default {
                 alert("Failed to authenticate. Please try again.");
                 return;
             }
+            const userInfo = await fetch(`${this.apiHost}/Users/GetUser`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${token}`
+                },
+            });
+            if (!userInfo.ok) {
+                alert("Failed to fetch user information. Please try again.");
+                return;
+            }
+            var user = await userInfo.json();
+            window.localStorage.setItem("userName", user.userName);
             window.localStorage.setItem("email", email);
             window.localStorage.setItem("accessToken", token);
             this.$router.push(this.$route.query.redirect || '/Notes')

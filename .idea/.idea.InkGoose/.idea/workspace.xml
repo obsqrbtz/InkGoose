@@ -10,7 +10,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a749c82-fc27-4a09-80bb-a1ecf2f32967" name="Changes" comment="" />
+    <list default="true" id="9a749c82-fc27-4a09-80bb-a1ecf2f32967" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.InkGoose/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InkGoose/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Api/Notes.Api/Controllers/Notes/NotesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Notes.Api/Controllers/Notes/NotesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Api/Notes.Api/Controllers/Users/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Notes.Api/Controllers/Users/UsersController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/NotesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/NotesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/auth/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/auth/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,14 +29,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;obsqrbtz&quot;
+  }
+}</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:obsqrbtz/inkgoose.git&quot;,
-    &quot;accountId&quot;: &quot;3e6e01fd-b72c-4ee1-aaa1-b2fcb1d6b0fb&quot;
+    &quot;url&quot;: &quot;https://github.com/obsqrbtz/inkgoose.git&quot;,
+    &quot;accountId&quot;: &quot;808282c8-78da-4251-aa5e-978c2a28f784&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///home/dan/src/inkgoose/Api/Notes.Api/Properties/launchSettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/dada.daniel/source/repos/inkgoose/Api/Notes.Api/Controllers/Notes/NotesController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProjectColorInfo">{
@@ -157,7 +170,18 @@
       <workItem from="1730129016645" duration="989000" />
       <workItem from="1730130040295" duration="587000" />
       <workItem from="1730130723807" duration="4112000" />
+      <workItem from="1730367706066" duration="990000" />
+      <workItem from="1730374435473" duration="335000" />
     </task>
+    <task id="LOCAL-00001" summary="API: updated usercontroller #deploy">
+      <option name="closed" value="true" />
+      <created>1730368648981</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730368648981</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,8 +189,21 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="API: updated usercontroller #deploy" />
+    <option name="LAST_COMMIT_MESSAGE" value="API: updated usercontroller #deploy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -176,6 +213,19 @@
           <line>26</line>
           <properties documentPath="$PROJECT_DIR$/Api/Notes.Api/Controllers/NotesController.cs" containingFunctionPresentation="Method 'GetNotesList'" />
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Api/Notes.Api/Controllers/Notes/NotesController.cs</url>
+          <line>33</line>
+          <properties documentPath="C:\Users\dada.daniel\source\repos\inkgoose\Api\Notes.Api\Controllers\Notes\NotesController.cs" containingFunctionPresentation="Method 'GetLast'">
+            <startOffsets>
+              <option value="1082" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1083" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

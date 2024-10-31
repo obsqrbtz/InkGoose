@@ -53,7 +53,7 @@ namespace InkGoose.Api.Controllers.Notes
 
         [HttpPost(Name = "AddNote")]
         [Authorize]
-        public void AddNote([FromBody] RequestBody requestParams)
+        public void AddNote([FromBody] NoteRequestBody noteRequestParams)
         {
             User? user = Helpers.GetUser(HttpContext.User, _context);
             if (user is null)
@@ -66,11 +66,11 @@ namespace InkGoose.Api.Controllers.Notes
                 DateCreated = DateTime.UtcNow,
                 DateModified = DateTime.UtcNow,
                 Archived = false,
-                Tag = requestParams.tag,
-                Pinned = requestParams.pinned,
-                Color = requestParams.color,
-                Title = requestParams.title,
-                Content = requestParams.content,
+                Tag = noteRequestParams.tag,
+                Pinned = noteRequestParams.pinned,
+                Color = noteRequestParams.color,
+                Title = noteRequestParams.title,
+                Content = noteRequestParams.content,
                 UserID = user.Id
             };
             Database.Helpers.CreateNote(newNote, _context);
@@ -90,7 +90,7 @@ namespace InkGoose.Api.Controllers.Notes
         // TODO: move request models somewhere
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
-        public class RequestBody
+        public class NoteRequestBody
         {
             [FromBody] public Guid id { get; set; }
             [FromBody] public bool archived { get; set; }
@@ -103,35 +103,35 @@ namespace InkGoose.Api.Controllers.Notes
 
         [HttpPatch(Name = "UpdateNote")]
         [Authorize]
-        public void UpdateNote([FromBody]RequestBody requestParams)
+        public void UpdateNote([FromBody]NoteRequestBody noteRequestParams)
         {
             var user = Helpers.GetUser(HttpContext.User, _context);
             if (user is null)
             {
                 return;
             }
-            var note = Database.Helpers.GetNote(requestParams.id, _context);
+            var note = Database.Helpers.GetNote(noteRequestParams.id, _context);
             if (note.UserID != user.Id)
             {
                 return;
             }
-            note.Archived = requestParams.archived;
-            note.Pinned = requestParams.pinned;
-            if (!string.IsNullOrEmpty(requestParams.title))
+            note.Archived = noteRequestParams.archived;
+            note.Pinned = noteRequestParams.pinned;
+            if (!string.IsNullOrEmpty(noteRequestParams.title))
             {
-                note.Title = requestParams.title;
+                note.Title = noteRequestParams.title;
             }
-            if (!string.IsNullOrEmpty(requestParams.content))
+            if (!string.IsNullOrEmpty(noteRequestParams.content))
             {
-                note.Content = requestParams.content;
+                note.Content = noteRequestParams.content;
             }
-            if (!string.IsNullOrEmpty(requestParams.tag))
+            if (!string.IsNullOrEmpty(noteRequestParams.tag))
             {
-                note.Tag = requestParams.tag;
+                note.Tag = noteRequestParams.tag;
             }
-            if (!string.IsNullOrEmpty(requestParams.color))
+            if (!string.IsNullOrEmpty(noteRequestParams.color))
             {
-                note.Color = requestParams.color;
+                note.Color = noteRequestParams.color;
             }
             note.DateModified = DateTime.UtcNow;
             Database.Helpers.UpdateNote(note, _context);

@@ -6,6 +6,7 @@ import Notes from './Notes.vue'
 import Login from './components/auth/Login.vue'
 import Signup from './components/auth/Signup.vue'
 import PrivacyPolicy from './components/PrivacyPolicy.vue'
+import Settings from './components/Settings.vue'
 import markdownit from 'markdown-it'
 import './style.css'
 import privacypolicyMd from './md/privacy.md?raw'
@@ -24,6 +25,14 @@ const router = createRouter({
       name: 'Notes',
       path: '/notes',
       component: Notes,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      name: 'Settings',
+      path: '/settings',
+      component: Settings,
       meta: {
         requiresAuth: true
       }

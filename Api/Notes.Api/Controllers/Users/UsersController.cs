@@ -7,6 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InkGoose.Api.Controllers.Users
 {
+    // TODO: move request models somewhere
+    public class UserRequestBody
+    {
+        [FromBody] public Guid id { get; set; }
+        [FromBody] public string? username { get; set; }
+        [FromBody] public string? email { get; set; }
+        [FromBody] public string? password { get; set; }
+    }
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class UsersController : ControllerBase
@@ -59,25 +67,25 @@ namespace InkGoose.Api.Controllers.Users
         }
 
         [HttpPatch(Name = "UpdateUser")]
-        public string UpdateUser(string? userName, string? email, string? password)
+        public string UpdateUser([FromBody]UserRequestBody userRequestParams)
         {
             User? user = Helpers.GetUser(HttpContext.User, _context);
             if (user is null)
             {
                 return "Unauthorized";
             }
-            if (!string.IsNullOrEmpty(userName))
+            if (!string.IsNullOrEmpty(userRequestParams.username))
             {
-                user.UserName = userName;
+                user.UserName = userRequestParams.username;
             }
-            if (!string.IsNullOrEmpty(email))
+            if (!string.IsNullOrEmpty(userRequestParams.email))
             {
-                user.Email = email;
+                user.Email = userRequestParams.email;
             }
 
-            if (!string.IsNullOrEmpty(password))
+            if (!string.IsNullOrEmpty(userRequestParams.password))
             {
-                user.Password = _hasher.HashPassword(user, password);
+                user.Password = _hasher.HashPassword(user, userRequestParams.password);
             }
             user.DateModified = DateTime.UtcNow;
             Database.Helpers.UpdateUser(user, _context);

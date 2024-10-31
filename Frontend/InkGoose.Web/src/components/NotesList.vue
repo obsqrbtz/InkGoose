@@ -135,8 +135,8 @@ var accessToken = localStorage.getItem("accessToken");
                             <a
                                 href="javascript:void(0)"
                                 class="hover:text-primary transition-colors duration-200 ease-in-out text-[1.075rem] font-medium text-content"
-                            >Robert
-                                Jason</a>
+                            >{{
+                                userName }} </a>
                             <span class="text-secondary-content font-medium block text-[0.85rem]"> {{ email }} </span>
                             <a
                                 v-if="accessToken"
@@ -147,8 +147,11 @@ var accessToken = localStorage.getItem("accessToken");
                             </a>
                         </div>
                     </div>
-                    <a
-                        class="inline-flex relative items-center group justify-end font-medium leading-normal text-center align-middle cursor-pointer rounded-[.95rem] transition-colors duration-150 ease-in-out bg-transparent shadow-none border-0"
+                    <router-link
+                        to="/settings"
+                        class="inline-flex relative items-center group justify-end font-medium leading-normal
+                        text-center align-middle cursor-pointer rounded-[.95rem] transition-colors duration-150
+                        ease-in-out bg-transparent shadow-none border-0"
                         href="javascript:void(0)"
                     >
                         <span
@@ -174,7 +177,7 @@ var accessToken = localStorage.getItem("accessToken");
                                 />
                             </svg>
                         </span>
-                    </a>
+                    </router-link>
                 </div>
 
                 <div class="relative pl-3 my-5">
@@ -242,6 +245,7 @@ var accessToken = localStorage.getItem("accessToken");
 
 <script>
 var email;
+var userName;
 var tags = [
     "main",
     "personal",
@@ -269,6 +273,7 @@ export default defineComponent({
     created() {
         this.fetchNotes();
         email = window.localStorage.getItem("email");
+        userName = window.localStorage.getItem("userName");
     },
     methods: {
         async fetchNotes() {
@@ -314,6 +319,8 @@ export default defineComponent({
         },
         logout() {
             window.localStorage.removeItem("accessToken");
+            window.localStorage.removeItem("email");
+            window.localStorage.removeItem("userName");
             this.$router.push(this.$route.query.redirect || '/')
         }
     }
