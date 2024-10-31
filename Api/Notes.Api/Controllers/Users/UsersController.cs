@@ -24,10 +24,17 @@ namespace InkGoose.Api.Controllers.Users
             _hasher = new PasswordHasher<User>();
         }
 
+        [HttpGet(Name = "GetUser")]
+        [Authorize]
+        public User? GetUser()
+        {
+            User? user = Helpers.GetUser(HttpContext.User, _context);
+            return user;
+        }
         [HttpPost(Name = "AddUser")]
         public void AddUser(string userName, string email, string password)
         {
-            User newUser = new User()
+            var newUser = new User()
             {
                 Id = Guid.NewGuid(),
                 DateCreated = DateTime.UtcNow,
@@ -40,15 +47,25 @@ namespace InkGoose.Api.Controllers.Users
         }
 
         [HttpDelete(Name = "DeleteUser")]
-        public void DeleteUser(Guid id)
+        public string DeleteUser()
         {
-            Database.Helpers.DeleteUser(id, _context);
+            User? user = Helpers.GetUser(HttpContext.User, _context);
+            if (user is null)
+            {
+                return "Unauthorized";
+            }
+            Database.Helpers.DeleteUser(user.Id, _context);
+            return "Success";
         }
 
         [HttpPatch(Name = "UpdateUser")]
-        public void UpdateUser(Guid id, string? userName,string? email)
+        public string UpdateUser(string? userName, string? email, string? password)
         {
-            var user = Database.Helpers.GetUser(id, _context);
+            User? user = Helpers.GetUser(HttpContext.User, _context);
+            if (user is null)
+            {
+                return "Unauthorized";
+            }
             if (!string.IsNullOrEmpty(userName))
             {
                 user.UserName = userName;
@@ -57,8 +74,14 @@ namespace InkGoose.Api.Controllers.Users
             {
                 user.Email = email;
             }
+
+            if (!string.IsNullOrEmpty(password))
+            {
+                user.Password = _hasher.HashPassword(user, password);
+            }
             user.DateModified = DateTime.UtcNow;
             Database.Helpers.UpdateUser(user, _context);
+            return "Success";
         }
         [HttpPost(Name = "Authenticate")]
         public string Authenticate(string email, string password)

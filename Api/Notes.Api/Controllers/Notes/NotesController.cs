@@ -36,6 +36,20 @@ namespace InkGoose.Api.Controllers.Notes
             }
             return Database.Helpers.GetLast(_context, user.Id);
         }
+        
+        [HttpGet(Name = "GetTags")]
+        [Authorize]
+        public IEnumerable<string?> GetTags()
+        {
+            User? user = Helpers.GetUser(HttpContext.User, _context);
+            if (user is null)
+            {
+                return [];
+            }
+            var notes = Database.Helpers.GetNotes(_context, user.Id);
+            var tags = notes.Where(x => x.UserID == user.Id).Select(y => y.Tag).Distinct();
+            return tags;
+        }
 
         [HttpPost(Name = "AddNote")]
         [Authorize]
