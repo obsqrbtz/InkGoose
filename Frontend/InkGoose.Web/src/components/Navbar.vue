@@ -1,7 +1,5 @@
 <script setup>
 import ThemeToggle from './ThemeToggle.vue';
-
-var accessToken = localStorage.getItem("accessToken");
 </script>
 <template>
     <div class="navbar bg-base-100 flex sticky top-0">
@@ -39,13 +37,6 @@ var accessToken = localStorage.getItem("accessToken");
             </label> -->
         </div>
         <div class="navbar-end basis-1/4">
-            <button
-                v-if="accessToken"
-                class="btn btn-ghost"
-                @click="logout"
-            >
-                log out
-            </button>
             <ThemeToggle class="mr-2" />
         </div>
     </div>
@@ -57,12 +48,6 @@ var email;
 export default {
     created() {
         email = window.localStorage.getItem("email");
-    },
-    methods: {
-        logout() {
-            window.localStorage.removeItem("accessToken");
-            this.$router.push(this.$route.query.redirect || '/')
-        }
     }
 }; 
 </script>
