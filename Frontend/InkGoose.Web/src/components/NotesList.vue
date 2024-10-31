@@ -67,7 +67,7 @@ var accessToken = localStorage.getItem("accessToken");
                 >
                     Pinned
                 </div>
-                <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <NoteCard
                         v-for="item in notesPinned"
                         :id="item.id"
@@ -85,7 +85,7 @@ var accessToken = localStorage.getItem("accessToken");
                 <div class="text-2xl mb-2">
                     All
                 </div>
-                <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <NoteCard
                         v-for="item in notes"
                         :id="item.id"
@@ -108,7 +108,7 @@ var accessToken = localStorage.getItem("accessToken");
                 <div class="text-2xl mb-2">
                     Archive
                 </div>
-                <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <NoteCard
                         v-for="item in notesArchived"
                         :id="item.id"

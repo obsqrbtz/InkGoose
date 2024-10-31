@@ -28,10 +28,10 @@ import Navbar from './Navbar.vue'
                                     </svg>
                                     <input
                                         id="username"
+                                        v-model="newName"
                                         type="text"
                                         class="grow"
                                         placeholder="Username"
-                                        :value="user.userName"
                                     >
 
                                 </label>
@@ -58,10 +58,10 @@ import Navbar from './Navbar.vue'
                                 </svg>
                                 <input
                                     id="email"
+                                    v-model="newEmail"
                                     type="text"
                                     class="grow"
                                     placeholder="Email"
-                                    :value="user.email"
                                 >
                             </label>
                         </div>
@@ -85,9 +85,9 @@ import Navbar from './Navbar.vue'
                                 </svg>
                                 <input
                                     id="password"
+                                    v-model="newPassword"
                                     type="password"
                                     class="grow"
-                                    :value="password"
                                 >
                             </label>
                         </div>
@@ -116,12 +116,13 @@ import Navbar from './Navbar.vue'
 </template>
 
 <script>
-var password;
 export default {
     data() {
         return {
             user: null,
-            password: null,
+            newName: null,
+            newEmail: null,
+            newPassword: null,
         };
     },
     async created() {
@@ -137,17 +138,19 @@ export default {
             return;
         }
         this.user = await userInfo.json();
+        this.newName = this.user.userName;
+        this.newEmail = this.user.email;
     },
     methods: {
         async saveChanges() {
             const updatedUser = {
                 id: this.user.id,
-                userName: this.user.userName,
-                email: this.user.email,
-                password: this.password, // Assuming the password is stored securely in a variable
+                username: this.newName,
+                email: this.newEmail,
+                password: this.newPassword,
             };
             const response = await fetch(`${this.apiHost}/Users/UpdateUser`, {
-                method: "PUT",
+                method: "PATCH",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
                     "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
@@ -158,6 +161,8 @@ export default {
                 alert("Failed to save changes. Please try again.");
                 return;
             }
+            window.localStorage.setItem("userName", this.newName);
+            window.localStorage.setItem("email", this.newEmail);
             alert("Changes saved successfully.");
         },
         async deleteAccount() {

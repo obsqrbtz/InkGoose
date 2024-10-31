@@ -12,11 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9a749c82-fc27-4a09-80bb-a1ecf2f32967" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InkGoose/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InkGoose/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/Notes.Api/Controllers/Notes/NotesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Notes.Api/Controllers/Notes/NotesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/Notes.Api/Controllers/Users/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Notes.Api/Controllers/Users/UsersController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/NotesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/NotesList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/auth/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/auth/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/Settings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/InkGoose.Web/src/components/Settings.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +167,7 @@
       <workItem from="1730130040295" duration="587000" />
       <workItem from="1730130723807" duration="4112000" />
       <workItem from="1730367706066" duration="990000" />
-      <workItem from="1730374435473" duration="335000" />
+      <workItem from="1730374435473" duration="1120000" />
     </task>
     <task id="LOCAL-00001" summary="API: updated usercontroller #deploy">
       <option name="closed" value="true" />
@@ -181,7 +177,23 @@
       <option name="project" value="LOCAL" />
       <updated>1730368648981</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="front: added settings&#10;api: get updated user details from request body&#10;#deploy">
+      <option name="closed" value="true" />
+      <created>1730374856029</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730374856030</updated>
+    </task>
+    <task id="LOCAL-00003">
+      <option name="closed" value="true" />
+      <created>1730374916258</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1730374916258</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,7 +215,9 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="API: updated usercontroller #deploy" />
-    <option name="LAST_COMMIT_MESSAGE" value="API: updated usercontroller #deploy" />
+    <MESSAGE value="front: added settings&#10;api: get updated user details from request body&#10;#deploy" />
+    <MESSAGE value="added settings.vue&#10;#deploy" />
+    <option name="LAST_COMMIT_MESSAGE" value="added settings.vue&#10;#deploy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
