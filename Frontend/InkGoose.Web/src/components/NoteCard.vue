@@ -32,6 +32,10 @@ const props = defineProps({
     dateCreated: {
         type: Date,
         required: true
+    },
+    tagIds: {
+        type: Array,
+        required: true
     }
 });
 
@@ -44,6 +48,7 @@ const props = defineProps({
         :title="title"
         :archived="archived"
         :note-content="noteContent"
+        :tags="tags"
         @update:is-open="showModal = $event"
         @notes-updated="reportUpdate"
     />
@@ -84,11 +89,10 @@ const props = defineProps({
                 <!-- <p class="text-xs">{{ new Date(dateCreated).toLocaleString() }}</p> -->
                 <div class="flex flex-row w-full justify-end pt-1 mb-1">
                     <span
+                        v-for="tag in tags"
+                        :key="tag"
                         class="inline-block bg-base-300 rounded-full px-2 py-1 text-xs font-semibold mr-1"
-                    >#photography</span>
-                    <span
-                        class="inline-block bg-base-300 rounded-full px-2 py-1 text-xs font-semibold mr-1"
-                    >#travel</span>
+                    >{{ tag.value }}</span>
                     <span class="inline-block bg-base-300 rounded-full px-2 py-1 text-xs font-semibold">+2</span>
                 </div>
             </div>
@@ -110,8 +114,12 @@ export default {
         return {
             showModal: false,
             editArchived: this.archived,
-            editPinned: this.pinned
+            editPinned: this.pinned,
+            tags: null
         };
+    },
+    created() {
+        this.fetchTags();
     },
     methods: {
         async deleteNote(id) {
@@ -129,12 +137,26 @@ export default {
             }
             this.$emit('notesUpdated');
         },
+        async fetchTags() {
+            const response = await fetch(`${this.apiHost}/Notes/GetTags?noteid=${this.id}`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+                },
+            });
+            if (response.status === 401) {
+                window.localStorage.removeItem("accessToken");
+                this.$router.push(this.$route.query.redirect || '/Login')
+                return;
+            }
+            this.tags = await response.json();
+        },
         async togglePinned(){
             var params = {
                 id: this.id,
                 title: this.title,
                 content: this.content,
-                tag: this.tag,
                 color: this.color,
                 archived: this.archive,
                 pinned: !this.pinned
@@ -153,7 +175,7 @@ export default {
                 this.$router.push(this.$route.query.redirect || '/Login')
                 return;
             }
-            this.$emit('notesUpdated');;
+            this.$emit('notesUpdated');
         },
         async toggleArchive() {
             var params = {

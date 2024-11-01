@@ -61,7 +61,9 @@ var accessToken = localStorage.getItem("accessToken");
                 v-if="notes && !showArchived"
                 class="container px-6"
             >
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-3 gap-6"
+                >
                     <NoteCard
                         v-for="item in notesPinned"
                         :id="item.id"
@@ -71,7 +73,7 @@ var accessToken = localStorage.getItem("accessToken");
                         :color="item.color"
                         :title="item.title"
                         :note-content="item.content"
-                        :tag="item.tag"
+                        :tags="item.tags"
                         :date-created="item.dateCreated"
                         @notes-updated="fetchNotes"
                     />
@@ -192,7 +194,7 @@ var accessToken = localStorage.getItem("accessToken");
                             >
                                 <a
                                     class=" flex items-center flex-grow text-[1.15rem] hover:text-primary"
-                                    @click="showArchived = false"
+                                    @click="setAll()"
                                 >All</a>
                             </span>
                         </div>
@@ -220,11 +222,16 @@ var accessToken = localStorage.getItem("accessToken");
                         <div
                             v-for="tag in tags"
                             :key="tag"
-                            class="overflow-auto"
+                            class="flex flex-row items-center inline-block bg-base-100 hover:bg-base-300 transition-all rounded-full px-4 py-2 text-sm font-semibold mx-2 cursor-pointer"
+                            @click="setTag(tag)"
                         >
-                            <span class="select-none flex items-center px-4 py-1 cursor-pointer">
-                                <a class="flex items-center flex-grow text-[1.15rem] hover:text-primary"> {{ tag }}</a>
-                            </span>
+                            <p class="grow ml-4"> {{ tag.value }} </p>
+                            <button
+                                class="btn btn-xs btn-ghost btn-circle ml-1"
+                                @click="deleteTag(tag)"
+                            >
+                                X
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -236,14 +243,6 @@ var accessToken = localStorage.getItem("accessToken");
 <script>
 var email;
 var userName;
-var tags = [
-    "main",
-    "personal",
-    "work",
-    "family",
-    "hobbies",
-    "shopping",
-];
 export default defineComponent({
     components: {
         NoteCard,
@@ -262,10 +261,60 @@ export default defineComponent({
     },
     created() {
         this.fetchNotes();
+        this.fetchTags();
         email = window.localStorage.getItem("email");
         userName = window.localStorage.getItem("userName");
     },
     methods: {
+        setAll() {
+            this.showArchived = false;
+            this.notes = this.data.filter(function (item) {
+                return item.archived === false && item.pinned === false;
+            });
+            this.notesPinned = this.data.filter(function (item) {
+                return item.pinned === true;
+            });
+        },
+        setTag(tag) {
+            this.notes = this.data.filter(function (item) {
+                return item.tags.includes(tag.id);
+            });
+            this.notes = this.data.filter(function (item) {
+                return item.pinned === false && item.tags.includes(tag.id);
+            });
+            this.notesPinned = this.data.filter(function (item) {
+                return item.pinned === true && item.tags.includes(tag.id);
+            });
+        },
+        async deleteTag(tag) {
+            const response = await fetch(`${this.apiHost}/Tags/Delete?id=${tag.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+                }
+            });
+            if (response.status === 401) {
+                window.localStorage.removeItem("accessToken");
+                this.$router.push(this.$route.query.redirect || '/Login')
+                return;
+            }
+        },
+        async fetchTags() {
+            const response = await fetch(`${this.apiHost}/Tags/GetUserTags`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+                }
+            });
+            if (response.status === 401) {
+                window.localStorage.removeItem("accessToken");
+                this.$router.push(this.$route.query.redirect || '/Login')
+                return;
+            }
+            this.tags = await response.json();
+        },
         async fetchNotes() {
             const response = await fetch(`${this.apiHost}/Notes/GetNotesList`, {
                 method: "GET",

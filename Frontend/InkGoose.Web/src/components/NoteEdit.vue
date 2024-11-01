@@ -20,7 +20,34 @@ import NoteView from './NoteView.vue'
                         @title-updated="updateTitle"
                         @content-updated="updateContent"
                     />
-                    <div class="w-full justify-items-start p-2 ml-2">
+                    <div class="flex flex-row w-full justify-start items-center pt-1 ml-4 mb-1 mt-1">
+                        <span
+                            v-for="tag in tags"
+                            :key="tag"
+                            class="inline-block bg-base-300 rounded-full px-2 py-1 text-xs font-semibold mr-1"
+                        >{{
+                             tag.value
+                         }}
+                            <button
+                                class="btn btn-xs btn-ghost btn-circle ml-1"
+                                @click="deleteTag(tag)"
+                            >X</button></span>
+                        <div class="join">
+                            <input
+                                v-model="newTag"
+                                type="text"
+                                placeholder="New tag"
+                                class="input input-bordered input-xs max-w-xs join-item"
+                            >
+                            <button
+                                class="btn btn-xs btn-ghost join-item"
+                                @click="addTag"
+                            >
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                    <div class="w-full justify-items-start p-2 ml-2 join-item">
                         <button
                             class="btn btn-sm"
                             @click="saveNote()"
@@ -68,6 +95,10 @@ export default {
         noteContent: {
             type: String,
             required: true
+        },
+        tags: {
+            type: Array,
+            required: true,
         }
     },
     emits: {
@@ -79,7 +110,8 @@ export default {
             editTitle: this.title,
             editContent: this.noteContent,
             editArchived: this.archived,
-            archivedStr: this.archived ? "Unarchive" : "Archive"
+            archivedStr: this.archived ? "Unarchive" : "Archive",
+            newTag: null
         }
     },
     methods: {
@@ -91,6 +123,34 @@ export default {
         },
         updateContent(newContent) {
             this.editContent = newContent;
+        },
+        async addTag() {
+            const response = await fetch(`${this.apiHost}/Notes/AddTag?noteid=${this.id}&value=${this.newTag}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+                },
+            });
+            if (response.status === 401) {
+                window.localStorage.removeItem("accessToken");
+                this.$router.push(this.$route.query.redirect || '/Login')
+                return;
+            }  
+        },
+        async deleteTag(tag) {
+            const response = await fetch(`${this.apiHost}/Notes/DeleteTag?noteid=${this.id}&tagid=${tag.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+                },
+            });
+            if (response.status === 401) {
+                window.localStorage.removeItem("accessToken");
+                this.$router.push(this.$route.query.redirect || '/Login')
+                return;
+            }
         },
         async saveNote() {
             var params = {
@@ -113,6 +173,13 @@ export default {
                 this.$router.push(this.$route.query.redirect || '/Login')
                 return;
             }
+            // const addTag = await fetch(`${this.apiHost}/Notes/AddTag?noteid=${this.id}&value=test`, {
+            //     method: "PATCH",
+            //     headers: {
+            //         "Content-type": "application/json; charset=UTF-8",
+            //         "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+            //     },
+            // });
             this.$emit('notesUpdated');
             this.$emit('update:isOpen', false);
         },
