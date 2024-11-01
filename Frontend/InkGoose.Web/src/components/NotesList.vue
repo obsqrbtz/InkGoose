@@ -210,28 +210,25 @@ var accessToken = localStorage.getItem("accessToken");
                                 >Archive</a>
                             </span>
                         </div>
-
-                        <!-- menu item -->
                         <div class="block pt-5 pb-[.15rem]">
                             <div class="px-4 py-1">
                                 <span class="font-semibold text-[0.95rem] uppercase text-secondary-content">Tags</span>
                             </div>
                         </div>
 
-                        <!-- menu item -->
                         <div
                             v-for="tag in tags"
                             :key="tag"
-                            class="flex flex-row items-center inline-block bg-base-100 hover:bg-base-300 transition-all rounded-full px-4 py-2 text-sm font-semibold mx-2 cursor-pointer"
+                            class="flex flex-row items-center inline-block bg-base-100 hover:bg-base-300 transition-all rounded-full px-4 py-2 text-sm font-semibold mx-2 mb-2 cursor-pointer"
                             @click="setTag(tag)"
                         >
                             <p class="grow ml-4"> {{ tag.value }} </p>
-                            <button
+                            <!-- <button
                                 class="btn btn-xs btn-ghost btn-circle ml-1"
                                 @click="deleteTag(tag)"
                             >
                                 X
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>
@@ -261,7 +258,6 @@ export default defineComponent({
     },
     created() {
         this.fetchNotes();
-        this.fetchTags();
         email = window.localStorage.getItem("email");
         userName = window.localStorage.getItem("userName");
     },
@@ -299,6 +295,7 @@ export default defineComponent({
                 this.$router.push(this.$route.query.redirect || '/Login')
                 return;
             }
+            this.fetchTags();
         },
         async fetchTags() {
             const response = await fetch(`${this.apiHost}/Tags/GetUserTags`, {
@@ -338,6 +335,7 @@ export default defineComponent({
             this.notesPinned = this.data.filter(function (item) {
                 return item.pinned === true;
             });
+            this.fetchTags();
         },
         async createNote() {
             var title = "New note";

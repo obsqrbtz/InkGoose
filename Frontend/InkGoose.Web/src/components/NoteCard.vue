@@ -48,7 +48,6 @@ const props = defineProps({
         :title="title"
         :archived="archived"
         :note-content="noteContent"
-        :tags="tags"
         @update:is-open="showModal = $event"
         @notes-updated="reportUpdate"
     />
@@ -87,13 +86,13 @@ const props = defineProps({
         <div>
             <div class="flex flex-row items-start justify-content-start text-base-content">
                 <!-- <p class="text-xs">{{ new Date(dateCreated).toLocaleString() }}</p> -->
-                <div class="flex flex-row w-full justify-end pt-1 mb-1">
+                <div class="flex flex-row w-full justify-end pt-1 mb-1 overflow-x-auto">
                     <span
                         v-for="tag in tags"
                         :key="tag"
                         class="inline-block bg-base-300 rounded-full px-2 py-1 text-xs font-semibold mr-1"
                     >{{ tag.value }}</span>
-                    <span class="inline-block bg-base-300 rounded-full px-2 py-1 text-xs font-semibold">+2</span>
+                    <!-- <span class="inline-block bg-base-300 rounded-full px-2 py-1 text-xs font-semibold">+2</span> -->
                 </div>
             </div>
             <!-- <div class="flex flex-row mb-2 mt-2 justify-end" /> bottom button block -->
