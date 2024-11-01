@@ -71,8 +71,12 @@ namespace InkGoose.Api.Controllers.Notes
                 return "Failed to add tag";
             }
             var note = Database.Helpers.GetNote(noteId, _context);
-            var tag = _context.Tags.First(t => t.Value == value && t.UserID == user.Id);
-            if (tag is null)
+            Tag? tag;
+            try
+            {
+                tag = _context.Tags.First(t => t.Value == value && t.UserID == user.Id);
+            }
+            catch(InvalidOperationException)
             {
                 tag = new Tag()
                 {
