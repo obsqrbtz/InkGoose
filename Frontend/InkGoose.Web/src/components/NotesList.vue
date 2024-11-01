@@ -61,12 +61,6 @@ var accessToken = localStorage.getItem("accessToken");
                 v-if="notes && !showArchived"
                 class="container px-6"
             >
-                <div
-                    v-if="notesPinned.length > 0"
-                    class="text-2xl mb-2"
-                >
-                    Pinned
-                </div>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <NoteCard
                         v-for="item in notesPinned"
@@ -81,9 +75,6 @@ var accessToken = localStorage.getItem("accessToken");
                         :date-created="item.dateCreated"
                         @notes-updated="fetchNotes"
                     />
-                </div>
-                <div class="text-2xl mb-2">
-                    All
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <NoteCard
@@ -132,15 +123,14 @@ var accessToken = localStorage.getItem("accessToken");
                 <div class="flex items-center justify-between px-8 py-5 bg-base-300">
                     <div class="flex items-center mr-5">
                         <div class="mr-2 ">
-                            <a
-                                href="javascript:void(0)"
-                                class="hover:text-primary transition-colors duration-200 ease-in-out text-[1.075rem] font-medium text-content"
-                            >{{
-                                userName }} </a>
-                            <span class="text-secondary-content font-medium block text-[0.85rem]"> {{ email }} </span>
+                            <span class="text-[1.075rem] font-semibold text-content">
+                                {{
+                                    userName }}
+                            </span>
+                            <span class="text-base-content font-medium block text-[0.85rem]"> {{ email }} </span>
                             <a
                                 v-if="accessToken"
-                                class="hover:text-primary transition-colors duration-200 ease-in-out text-[0.85rem] cursor-pointer"
+                                class="hover:text-primary transition-colors duration-200 ease-in-out text-[0.85rem] font-semibold cursor-pointer"
                                 @click="logout"
                             >
                                 log out

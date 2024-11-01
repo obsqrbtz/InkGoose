@@ -39,16 +39,64 @@ namespace InkGoose.Api.Controllers.Notes
         
         [HttpGet(Name = "GetTags")]
         [Authorize]
-        public IEnumerable<string?> GetTags()
+        public IEnumerable<Tag> GetTags(Guid noteId)
         {
             User? user = Helpers.GetUser(HttpContext.User, _context);
             if (user is null)
             {
                 return [];
             }
-            var notes = Database.Helpers.GetNotes(_context, user.Id);
-            var tags = notes.Where(x => x.UserID == user.Id).Select(y => y.Tag).Distinct();
+            var note = Database.Helpers.GetNote(noteId, _context);
+            // TODO: move to helpers
+            var userTags = _context.Tags.Where(x => x.UserID == user.Id).ToList();
+            var tags = new List<Tag>();
+            foreach(Guid tagId in note.Tags)
+            {
+                var tag = userTags.Find(x => x.Id == tagId);
+                if (tag is not null)
+                {
+                    tags.Add(tag);
+                }
+            }
             return tags;
+        }
+
+        [HttpPatch(Name = "AddTag")]
+        [Authorize]
+        public string AddTag(Guid noteId, string value)
+        {
+            User? user = Helpers.GetUser(HttpContext.User, _context);
+            if (user is null)
+            {
+                return "Failed to add tag";
+            }
+            var note = Database.Helpers.GetNote(noteId, _context);
+            var tag = new Tag()
+            {
+                Id = Guid.NewGuid(),
+                Value = value,
+                UserID = user.Id
+            };
+            _context.Tags.Add(tag);
+            note.Tags.Add(tag.Id);
+            _context.SaveChanges();
+            Database.Helpers.UpdateNote(note, _context);
+            return "Success";
+        }
+
+        [HttpDelete(Name = "DeleteTag")]
+        [Authorize]
+        public string DeleteTag(Guid noteId, Guid tagId)
+        {
+            User? user = Helpers.GetUser(HttpContext.User, _context);
+            if (user is null)
+            {
+                return "Failed to add tag";
+            }
+            var note = Database.Helpers.GetNote(noteId, _context);
+            note.Tags.Remove(tagId);
+            Database.Helpers.UpdateNote(note, _context);
+            return "Success";
         }
 
         [HttpPost(Name = "AddNote")]
@@ -66,7 +114,6 @@ namespace InkGoose.Api.Controllers.Notes
                 DateCreated = DateTime.UtcNow,
                 DateModified = DateTime.UtcNow,
                 Archived = false,
-                Tag = noteRequestParams.tag,
                 Pinned = noteRequestParams.pinned,
                 Color = noteRequestParams.color,
                 Title = noteRequestParams.title,
@@ -97,7 +144,6 @@ namespace InkGoose.Api.Controllers.Notes
             [FromBody] public bool pinned { get; set; }
             [FromBody] public string? title { get; set; }
             [FromBody] public string? content { get; set; }
-            [FromBody] public string? tag { get; set; }
             [FromBody] public string? color { get; set; }
         }
 
@@ -124,10 +170,6 @@ namespace InkGoose.Api.Controllers.Notes
             if (!string.IsNullOrEmpty(noteRequestParams.content))
             {
                 note.Content = noteRequestParams.content;
-            }
-            if (!string.IsNullOrEmpty(noteRequestParams.tag))
-            {
-                note.Tag = noteRequestParams.tag;
             }
             if (!string.IsNullOrEmpty(noteRequestParams.color))
             {
