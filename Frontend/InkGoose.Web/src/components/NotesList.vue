@@ -235,6 +235,10 @@ var accessToken = localStorage.getItem("accessToken");
             </div>
         </div>
     </div>
+
+    <!-- <button @click="sendNotesToServer" class="btn btn-primary">
+        Create 100 Random Notes 
+    </button> -->
 </template>
 
 <script>
@@ -359,6 +363,53 @@ export default defineComponent({
             window.localStorage.removeItem("email");
             window.localStorage.removeItem("userName");
             this.$router.push(this.$route.query.redirect || '/')
+        },
+        generateRandomNotes() {
+            const notes = [];
+            const randomWords = ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Consectetur", "Adipiscing", "Elit", "Sed", "Do", "Eiusmod", "Tempor", "Incididunt", "Ut", "Labore", "Et", "Dolore", "Magna", "Aliqua"];
+
+            for (let i = 1; i <= 100; i++) {
+                const title = `Random Note ${i}`;
+                const content = `# ${title}\n\n` + 
+                                `This is the content of ${title}.\n\n` + 
+                                `## Details\n` + 
+                                `- ${this.getRandomSentence(randomWords)}\n` + 
+                                `- ${this.getRandomSentence(randomWords)}\n` + 
+                                `- ${this.getRandomSentence(randomWords)}`;
+                notes.push({ title, content });
+            }
+            return notes;
+        },
+
+        getRandomSentence(words) {
+            const sentenceLength = Math.floor(Math.random() * 5) + 5;
+            const sentence = [];
+            for (let j = 0; j < sentenceLength; j++) {
+                const randomWord = words[Math.floor(Math.random() * words.length)];
+                sentence.push(randomWord);
+            }
+            return sentence.join(' ') + '.';
+        },
+
+        async sendNotesToServer() {
+            const notes = this.generateRandomNotes();
+
+            for (const note of notes) {
+                const response = await fetch(`${this.apiHost}/Notes/AddNote`, {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8",
+                        "Authorization": `Bearer ${window.localStorage.getItem("accessToken")}`
+                    },
+                    body: JSON.stringify(note)
+                });
+
+                if (!response.ok) {
+                    console.error(`Failed to add note: ${note.title}`);
+                }
+            }
+
+            this.fetchNotes();
         }
     }
 })
