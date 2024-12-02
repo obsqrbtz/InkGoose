@@ -5,7 +5,7 @@
 > [!NOTE]  
 > Project is in early development and not intended for regular use.
 
-## Backend - .NET 8
+## Backend - .NET 9
 
 - Asp .NET Core Web API
 - Entity Framework Core
