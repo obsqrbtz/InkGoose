@@ -10,7 +10,7 @@
     "lint": "eslint . --fix && markdownlint \"**/*.md\" --fix"
   },
   "dependencies": {
-    "@vueuse/core": "^11.1.0",
+    "@vueuse/core": "^12.2.0",
     "markdown-it": "^14.1.0",
     "theme-change": "^2.5.0",
     "vue": "^3.4.29",
