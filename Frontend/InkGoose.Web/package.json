@@ -21,7 +21,7 @@
     "@types/markdown-it": "^14.1.2",
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.20",
-    "daisyui": "^4.12.10",
+    "daisyui": "^4.12.23",
     "eslint": "^9.13.0",
     "eslint-plugin-vue": "^9.29.1",
     "postcss": "^8.4.47",
