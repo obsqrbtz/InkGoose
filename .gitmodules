@@ -1,0 +1,6 @@
+[submodule "InkGoose.Desktop"]
+	path = InkGoose.Desktop
+	url = https://github.com/obsqrbtz/InkGoose.Desktop.git
+[submodule "InkGoose.Api"]
+	path = InkGoose.Api
+	url = https://github.com/obsqrbtz/InkGoose.Api.git
